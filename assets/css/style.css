@@ -1,0 +1,30 @@
+h1 {
+    text-align: center;
+}
+
+.background {
+    background: url("../images/food_background.jpg");
+    height: 400px;
+}
+
+#header-image {
+    height: 200px;
+}
+
+
+.navbar {
+    text-align: center;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.search-box {
+    background: rgb(255, 255, 255);
+    padding: 50px;
+    margin-top: 150px;
+    border-radius: 10px;
+}
