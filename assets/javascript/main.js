@@ -1,23 +1,27 @@
 //Geolocation function
-var useLocation = $('#useLocation');
+$(document).ready(function(){
 
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-        $('.search-box').text("Geolocation is not supported by this browser. Please enter a zip code.");
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else { 
+            $('.search-box').text("Geolocation is not supported by this browser. Please enter a zip code.");
+        }
     }
-}
-//enhance: add error handling for geolocation
+    //enhance: add error handling for geolocation
+    
+    function showPosition(position) {
+        var latitude =  position.coords.latitude;
+        var longitude = position.coords.longitude;
+            console.log(latitude, longitude);
+    }
+    
+    //If user clicks "use location" button, then get user's current location
+    $('#useLocation').on('click', getLocation);
 
-function showPosition(position) {
-    var latitude =  position.coords.latitude;
-    var longitude = position.coords.longitude;
-        console.log(latitude, longitude);
-}
+});
 
-//If user clicks "use location" button, then get user's current location
-$('#useLocation').on('click', getLocation);
+
 
 /** event listener on the .submit button for zip code
     captures zip zode as var = zipCode
