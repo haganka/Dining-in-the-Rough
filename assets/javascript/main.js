@@ -1,69 +1,61 @@
-//Geolocation function
-$(document).ready(function(){
+var latLong = '';
 
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else { 
-            $('.search-box').text("Geolocation is not supported by this browser. Please enter a zip code.");
-        }
-    }
-    //enhance: add error handling for geolocation
+var getLatLng = function() {
+
+    var APIKey = '&key=AIzaSyCRYYladM1Ui9mjSl2TgmWoTwj_tCO4Lxc';
+ 
+    event.preventDefault();
+ 
+    var getZip = $('#location-input').val();
+    console.log(getZip);
+    var queryURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + getZip;
     
-    function showPosition(position) {
-        var latitude =  position.coords.latitude;
-        var longitude = position.coords.longitude;
-            console.log(latitude, longitude);
-    }
+    $.ajax({
+        url: queryURL,
+        method: 'GET'
+      }).then(function(response) {
     
-    //If user clicks "use location" button, then get user's current location
-    $('#useLocation').on('click', getLocation);
+        latLong = response.results[0].geometry.location.lat + '/' + response.results[0].geometry.location.lng;
+        console.log(latLong);
+        runQuery(latLong);
+  
+      });
+ }
+ $('.submit').on('click', getLatLng);
 
-});
+//Put yelp query function here
+function runQuery(latLong){
 
-
-
-/** event listener on the .submit button for zip code
-    captures zip zode as var = zipCode
-    insert function to take zipCode and turn into lat/long
-    ensure that the results come back as a NUMBER not string
-
-This function makes the ajax call to the Yelp API to get business results
-
-    queryURL: 
-    restaurantCounter = 0;
-
-    Inputs parameters of 
-        latitude=latitude
-        longitude=longitude
-        price=1
-        radius=3219
-    Returns 10 restaurants
-
+    var queryURL = 'https://cors-anywhere.herokuapp.com/' + 'https://nu-yelp-api.herokuapp.com/api/all/' + latLong + '/1/3219';
+    var restaurantCounter = 0;
+    console.log(queryURL);  
+  
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(yelpData){
-        filter out the $ results;
-        
-    USE NYT AND MOVIE-APPLICATION EXAMPLES
-        for (var i = 0, i < 10, i++){
+
+        //make the yelpData into an object
+        var yelpObj = JSON.parse(yelpData);
+        console.log(yelpObj);
+
+        for (var i = 0; i < 10; i++){
             restaurantCounter++;
-            var newResult = $('<div>').
-                .addClass('result');
-                .attr('id', + 'restaurant-' + restaurantCounter);
-            here add the following properties to page:
-                yelpData.image_url
-                yelpData.name
-                yelpData.display_address
-                yelpData.rating
-                yelpData.link 
-                yelpData.hours
+            console.log(yelpObj.businesses[i].name);
 
-            $('.search-results).append(newResult);
+            var newResult = $('<div>');
+                newResult.addClass('result');
+                newResult.attr('id', 'restaurant-' + restaurantCounter);
+                
+                $('.search-results').append(newResult);
+                newResult.text(restaurantCounter + '. ' + yelpObj.businesses[i].name);
+                newResult.append(yelpObj.businesses[i].location.display_address);
+                newResult.append(yelpObj.businesses[i].rating);
+                newResult.append(yelpObj.businesses[i].link);
+                    if (yelpObj.businesses[i].is_closed === false){
+                        newResult.append('Open Now');
+                    }
+                
         }
-        
     });
-
-        
-**/
+}
