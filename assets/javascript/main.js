@@ -48,6 +48,9 @@ function runQuery(latLong){
                 newResult.attr('id', 'restaurant-' + restaurantCounter);
                 
                 $('.search-results').append(newResult);
+                var resultOutput = '<p class="title>' + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' + '<p class="address">' + yelpObj.businesses[i].location.display_address + '</p>' + '<p class="rating">' + yelpObj.businesses[i].rating + ' ' + 
+
+
                 newResult.text(restaurantCounter + '. ' + yelpObj.businesses[i].name);
                 newResult.append(yelpObj.businesses[i].location.display_address);
                 newResult.append(yelpObj.businesses[i].rating);
