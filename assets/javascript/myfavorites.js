@@ -57,6 +57,7 @@ function runQuery(latLong) {
             favButton.attr('id', restaurantCounter);
             favButton.attr('class', 'favBox btn btn-default');
             favButton.attr("data-name", yelpObj.businesses[i].name);
+            favButton.attr("data-url", yelpObj.businesses[i].url);
             favButton.append("add to favs");
             // favButton.attr("#listNum-" + restaurantCounter);
             name.prepend(favButton);
@@ -81,8 +82,10 @@ function saveRestaurant(event){
     $("saved-places").append(list);
 
     var rest = $(this).attr('data-name');
+    var link = $(this).attr('data-url');
+    console.log("link", link);
     console.log("rest", rest);
-    $(".saved-places").append("<li>" + rest + "</li>");
+    $(".saved-places").append("<li>" + rest + '<a href=' + link + '>' + "Visit on Yelp" + '</a>' + "</li>");
 
 }
 
@@ -98,12 +101,12 @@ $(document).on("click", ".favBox", saveRestaurant);
 // function putOnPage () {
 //     $(".saved-places").empty();
 
-    // var insideFavorites = JSON.parse(localStorage.getItem("savedplaces"));
+//     var insideFavorites = JSON.parse(localStorage.getItem("savedplaces"));
 
-    // if (!Array.isArray(insideFavorites)){
-    //     insideFavorites = [];
-    //     console.log("inside1", insideFavorites);
-    // }
+//     if (!Array.isArray(insideFavorites)){
+//         insideFavorites = [];
+//         console.log("inside1", insideFavorites);
+//     }
 
     // for (var i = 0; i < insideFavorites.length; i++){
     //     var place = $("<p>").text(insideFavorites[i]);
