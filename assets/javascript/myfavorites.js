@@ -28,6 +28,7 @@ function runQuery(latLong) {
 
     var queryURL = 'https://cors-anywhere.herokuapp.com/' + 'https://nu-yelp-api.herokuapp.com/api/all/' + latLong + '/1/3219';
     var restaurantCounter = 0;
+
     console.log(queryURL);
 
     $.ajax({
@@ -48,9 +49,15 @@ function runQuery(latLong) {
             newResult.attr('id', 'restaurant-' + restaurantCounter);
             $('.search-results').append(newResult);
 
-            var name = newResult.text(restaurantCounter + '. ' + yelpObj.businesses[i].name).val('id', 'restName-' + yelpObj.businesses[i].name);
+            var name = newResult.text(restaurantCounter + '. ' + yelpObj.businesses[i].name).attr('id', 'restName-' + yelpObj.businesses[i].name);
+            // name.val(yelpObj.businesses[i].name);
             //favorites button addition to main.js
-            var favButton = $('<input type="button" value="add to favs" class="btn btn-default favorites" />').attr("data-index", i);
+            // var favButton = $('<input type="button" value="add to favs" class="btn btn-default favorites" />').attr("data-index", i);
+            var favButton = $('<button>');
+            favButton.attr('id', restaurantCounter);
+            favButton.attr('class', 'favBox btn btn-default');
+            favButton.attr("data-name", yelpObj.businesses[i].name);
+            favButton.append("add to favs");
             // favButton.attr("#listNum-" + restaurantCounter);
             name.prepend(favButton);
             var address = newResult.append(yelpObj.businesses[i].location.display_address);
@@ -66,6 +73,20 @@ function runQuery(latLong) {
     });
 
 };
+
+
+function saveRestaurant(event){
+    event.preventDefault();
+    var list = $("<ol>");
+    $("saved-places").append(list);
+
+    var rest = $(this).attr('data-name');
+    console.log("rest", rest);
+    $(".saved-places").append("<li>" + rest + "</li>");
+
+}
+
+$(document).on("click", ".favBox", saveRestaurant);
 
 
 // var favorites = JSON.parse(localStorage.getItem("savedplaces"));
@@ -93,19 +114,6 @@ function runQuery(latLong) {
 
     // }
 
-    function saveRestaurant(event){
-        event.preventDefault();
-
-        // var currentIndex = $(this).attr("data-index");
-        // insideFavorites.push(currentIndex);
-        // console.log("clicked", insideFavorites);
-        $(".search-results").clone().appendTo(".saved-places");
-
-
-    }
-
-
-    $(document).on("click", "input.favorites", saveRestaurant);
 // }
 
 // putOnPage();
