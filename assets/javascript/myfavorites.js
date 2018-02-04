@@ -88,7 +88,7 @@ function saveRestaurant(event){
 
     var rest = $(this).attr('data-name');
     var link = $(this).attr('data-url');
-    link = '  <a href=' + link + '>' + "Link to Yelp" + '</a>';
+    link = '  <a target="_blank" href=' + link + '>' + "Link to Yelp" + '</a>';
     var save = [rest, link];
         console.log("link", link);
         console.log("rest", rest);
@@ -103,7 +103,8 @@ $(document).on("click", ".favBox", saveRestaurant);
 
 
 function putOnPage () {
-    $(".saved-places").empty();
+    $(".saved-list").empty();
+
 
     var insideFavorites = JSON.parse(localStorage.getItem("savedplaces"));
 
@@ -115,7 +116,7 @@ function putOnPage () {
         var name = $("<p>").append(insideFavorites[i]);
         var remove = $("<button class='delete'>").text("Remove").attr("data-index", i);
         name.prepend(remove);
-        $(".saved-places").append(name);
+        $(".saved-list").append(name);
         // $(".saved-places").append(insideFavorites[i]);
     }
     
