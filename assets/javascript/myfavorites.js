@@ -76,48 +76,62 @@ function runQuery(latLong) {
 };
 
 
+var favorites = JSON.parse(localStorage.getItem("savedplaces"));
+
+if (!Array.isArray(favorites)) {
+    favorites = [];
+}
+
 function saveRestaurant(event){
+
     event.preventDefault();
-    var list = $("<ol>");
-    $("saved-places").append(list);
 
     var rest = $(this).attr('data-name');
     var link = $(this).attr('data-url');
-    console.log("link", link);
-    console.log("rest", rest);
-    $(".saved-places").append("<li>" + rest + '<a href=' + link + '>' + "Visit on Yelp" + '</a>' + "</li>");
+    link = '  <a href=' + link + '>' + "Link to Yelp" + '</a>';
+    var save = [rest, link];
+        console.log("link", link);
+        console.log("rest", rest);
+    favorites.push(save);
+        console.log("faves", favorites);
+    localStorage.setItem("savedplaces", JSON.stringify(favorites));
 
+putOnPage();
 }
 
 $(document).on("click", ".favBox", saveRestaurant);
 
 
-// var favorites = JSON.parse(localStorage.getItem("savedplaces"));
+function putOnPage () {
+    $(".saved-places").empty();
 
-// if (!Array.isArray(favorites)) {
-//     favorites = [];
-// }
+    var insideFavorites = JSON.parse(localStorage.getItem("savedplaces"));
 
-// function putOnPage () {
-//     $(".saved-places").empty();
+    if (!Array.isArray(insideFavorites)){
+        insideFavorites = [];
+            console.log("inside1", insideFavorites);
+    }
+    for (var i = 0; i < insideFavorites.length; i++) {
+        var name = $("<p>").append(insideFavorites[i]);
+        var remove = $("<button class='delete'>").text("Remove").attr("data-index", i);
+        name.prepend(remove);
+        $(".saved-places").append(name);
+        // $(".saved-places").append(insideFavorites[i]);
+    }
+    
+}
+putOnPage();
 
-//     var insideFavorites = JSON.parse(localStorage.getItem("savedplaces"));
+$(document).on("click", "button.delete", function() {
+    var favelist = JSON.parse(localStorage.getItem("savedplaces"));
+    var currentIndex = $(this).attr("data-index");
 
-//     if (!Array.isArray(insideFavorites)){
-//         insideFavorites = [];
-//         console.log("inside1", insideFavorites);
-//     }
+    favelist.splice(currentIndex, 1);
+    favorites = favelist;
 
-    // for (var i = 0; i < insideFavorites.length; i++){
-    //     var place = $("<p>").text(insideFavorites[i]);
-    //     var addButton = $("<button class='add-to-favs'>").text("Add to favs").attr("data-index", i);
-    //     place.prepend(addButton);
-    //     $(".saved-places").prepend(place);
-    //     console.log("inside", insideFavorites);
+    localStorage.setItem("savedplaces", JSON.stringify(favelist));
 
-    // }
+    putOnPage();
+  });
 
-// }
-
-// putOnPage();
-
+    
