@@ -32,3 +32,7 @@ h1 {
 .form-inline {
     text-align: center;
 }
+
+#map {
+    height: 400px;
+}
