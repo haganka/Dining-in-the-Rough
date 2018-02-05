@@ -37,25 +37,71 @@ function runQuery(latLong){
 
         //make the yelpData into an object
         var yelpObj = JSON.parse(yelpData);
-        console.log(yelpObj);
 
         for (var i = 0; i < 10; i++){
             restaurantCounter++;
-            console.log(yelpObj.businesses[i].name);
 
             var newResult = $('<div>');
                 newResult.addClass('result');
                 newResult.attr('id', 'restaurant-' + restaurantCounter);
                 
                 $('.search-results').append(newResult);
-                newResult.text(restaurantCounter + '. ' + yelpObj.businesses[i].name);
-                newResult.append(yelpObj.businesses[i].location.display_address);
-                newResult.append(yelpObj.businesses[i].rating);
-                newResult.append(yelpObj.businesses[i].link);
-                    if (yelpObj.businesses[i].is_closed === false){
-                        newResult.append('Open Now');
-                    }
-                
+
+                var resultOutput =  '<p class="title">' + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' + 
+                                    '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' + 
+                                    `<p class=rating${i}>` + '</p>' +
+                                    '<p class="reviews"><a target="_blank" href=' + yelpObj.businesses[i].url + '>' + 'Based on ' + yelpObj.businesses[i].review_count + ' Reviews' + '</a></p>';
+
+                var favButton = $('<button>');
+                                            favButton.attr('id', restaurantCounter);
+                                            favButton.attr('class', 'favBox btn btn-default');
+                                            favButton.attr("data-name", yelpObj.businesses[i].name);
+                                            favButton.attr("data-url", yelpObj.businesses[i].url);
+                                            favButton.append("add to favs");
+
+                newResult.html(resultOutput);
+
+                                    var imageLinks = [
+                                        '<img src="regular/regular_5.png" alt="5 stars">',
+                                        '<img src="regular/regular_4_half.png" alt="4.5 stars">',
+                                        '<img src="regular/regular_4.png" alt="4 stars">',
+                                        '<img src="regular/regular_3_half.png" alt="3.5 stars">',
+                                        '<img src="regular/regular_3.png" alt="3 stars">',
+                                        '<img src="regular/regular_2_half.png" alt="2.5 stars">',
+                                        '<img src="regular/regular_2.png" alt="2 stars">',
+                                        '<img src="regular/regular_1_half.png" alt="1.5 stars">',
+                                        '<img src="regular/regular_1.png" alt="1 star">'
+                                    ];
+
+                                            if (yelpObj.businesses[i].rating === 5){
+                                                $('.rating' + i).html(imageLinks[0]);
+                                            }
+                                            else if (yelpObj.businesses[i].rating === 4.5){
+                                                $('.rating' + i).html(imageLinks[1]); 
+                                            }
+                                            else if (yelpObj.businesses[i].rating === 4){
+                                                $('.rating' + i).html(imageLinks[2]); 
+                                            }
+                                            else if (yelpObj.businesses[i].rating === 3.5){
+                                                $('.rating' + i).html(imageLinks[3]); 
+                                            }
+                                            else if (yelpObj.businesses[i].rating === 3){
+                                                $('.rating' + i).html(imageLinks[4]); 
+                                            }
+                                            else if (yelpObj.businesses[i].rating === 2.5){
+                                                $('.rating' + i).html(imageLinks[5]); 
+                                            }
+                                            else if (yelpObj.businesses[i].rating === 2){
+                                                $('.rating' + i).html(imageLinks[6]); 
+                                            }
+                                            else if (yelpObj.businesses[i].rating === 1.5){
+                                                $('.rating' + i).html(imageLinks[7]); 
+                                            }
+                                            else if (yelpObj.businesses[i].rating === 1){
+                                                $('.rating' + i).html(imageLinks[8]); 
+                                            }
+                newResult.prepend(favButton);
         }
     });
 }
+
