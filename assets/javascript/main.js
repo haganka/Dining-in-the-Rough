@@ -1,5 +1,32 @@
 var latLong = '';
 
+//This is the initial map view upon loading
+function initMap() {
+    var userLocation = {lat: 41.89633, lng: -87.61871};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 13,
+      center: userLocation,
+      gestureHandling: 'cooperative'
+    });
+}
+
+// Update Google Map with a view of the location requested by user
+function updateMap() {
+    var mapSplit = latLong.split("/");
+    var userLocation = {lat: parseFloat(mapSplit[0]), lng: parseFloat(mapSplit[1])};
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 13,
+      center: userLocation,
+      gestureHandling: 'cooperative'
+    });
+    /* Turning this off - may use this as a custom marker for user position
+    var marker = new google.maps.Marker({
+      position: userLocation,
+      map: map,
+      title: 'User'
+    });*/
+}
+
 var getLatLng = function() {
 
     var APIKey = '&key=AIzaSyCRYYladM1Ui9mjSl2TgmWoTwj_tCO4Lxc';
@@ -104,6 +131,9 @@ function runQuery(latLong){
                 newResult.prepend(favButton);
 
         }
+
+     /* Update Map with location after location is entered */
+        updateMap();
     });
 }
 
