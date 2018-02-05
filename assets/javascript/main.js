@@ -1,3 +1,4 @@
+var map;
 var latLong = '';
 
 //This is the initial map view upon loading
@@ -19,12 +20,13 @@ function updateMap() {
       center: userLocation,
       gestureHandling: 'cooperative'
     });
-    /* Turning this off - may use this as a custom marker for user position
+
+    //Turning this off - may use this as a custom marker for user position
     var marker = new google.maps.Marker({
       position: userLocation,
       map: map,
       title: 'User'
-    });*/
+    });
 }
 
 var getLatLng = function() {
@@ -90,15 +92,15 @@ function runQuery(latLong){
                 newResult.html(resultOutput);
 
                                     var imageLinks = [
-                                        '<img src="../images/regular/regular_5.png" alt="5 stars">',
-                                        '<img src="../images/regular/regular_4_half.png" alt="4.5 stars">',
-                                        '<img src="../images/regular/regular_4.png" alt="4 stars">',
-                                        '<img src="../images/regular/regular_3_half.png" alt="3.5 stars">',
-                                        '<img src="../images/regular/regular_3.png" alt="3 stars">',
-                                        '<img src="../images/regular/regular_2_half.png" alt="2.5 stars">',
-                                        '<img src="../images/regular/regular_2.png" alt="2 stars">',
-                                        '<img src="../images/regular/regular_1_half.png" alt="1.5 stars">',
-                                        '<img src="../images/regular/regular_1.png" alt="1 star">'
+                                        '<img src="assets/images/regular/regular_5.png" alt="5 stars">',
+                                        '<img src="assets/images/regular/regular_4_half.png" alt="4.5 stars">',
+                                        '<img src="assets/images/regular/regular_4.png" alt="4 stars">',
+                                        '<img src="assets/images/regular/regular_3_half.png" alt="3.5 stars">',
+                                        '<img src="assets/images/regular/regular_3.png" alt="3 stars">',
+                                        '<img src="assets/images/regular/regular_2_half.png" alt="2.5 stars">',
+                                        '<img src="assets/images/regular/regular_2.png" alt="2 stars">',
+                                        '<img src="assets/images/regular/regular_1_half.png" alt="1.5 stars">',
+                                        '<img src="assets/images/regular/regular_1.png" alt="1 star">'
                                     ];
 
                                             if (yelpObj.businesses[i].rating === 5){
@@ -134,6 +136,18 @@ function runQuery(latLong){
 
      /* Update Map with location after location is entered */
         updateMap();
+
+        for (var i = 0; i < 10; i++){
+
+            var infowindow = new google.maps.InfoWindow();
+            var myLatLng = new google.maps.LatLng((yelpObj.businesses[i].coordinates.latitude), (yelpObj.businesses[i].coordinates.longitude));
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                animation: google.maps.Animation.DROP,
+            });
+        }
+
     });
 }
 
