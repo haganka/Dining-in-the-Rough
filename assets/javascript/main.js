@@ -47,6 +47,7 @@ function runQuery(latLong){
                 
                 $('.search-results').append(newResult);
 
+
                 var resultOutput =  '<p class="title">' + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' + 
                                     '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' + 
                                     `<p class=rating${i}>` + '</p>' +
@@ -101,6 +102,7 @@ function runQuery(latLong){
                                                 $('.rating' + i).html(imageLinks[8]); 
                                             }
                 newResult.prepend(favButton);
+
         }
     });
 }
