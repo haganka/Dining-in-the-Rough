@@ -62,15 +62,15 @@ function runQuery(latLong){
                 newResult.html(resultOutput);
 
                                     var imageLinks = [
-                                        '<img src="regular/regular_5.png" alt="5 stars">',
-                                        '<img src="regular/regular_4_half.png" alt="4.5 stars">',
-                                        '<img src="regular/regular_4.png" alt="4 stars">',
-                                        '<img src="regular/regular_3_half.png" alt="3.5 stars">',
-                                        '<img src="regular/regular_3.png" alt="3 stars">',
-                                        '<img src="regular/regular_2_half.png" alt="2.5 stars">',
-                                        '<img src="regular/regular_2.png" alt="2 stars">',
-                                        '<img src="regular/regular_1_half.png" alt="1.5 stars">',
-                                        '<img src="regular/regular_1.png" alt="1 star">'
+                                        '<img src="../images/regular/regular_5.png" alt="5 stars">',
+                                        '<img src="../images/regular/regular_4_half.png" alt="4.5 stars">',
+                                        '<img src="../images/regular/regular_4.png" alt="4 stars">',
+                                        '<img src="../images/regular/regular_3_half.png" alt="3.5 stars">',
+                                        '<img src="../images/regular/regular_3.png" alt="3 stars">',
+                                        '<img src="../images/regular/regular_2_half.png" alt="2.5 stars">',
+                                        '<img src="../images/regular/regular_2.png" alt="2 stars">',
+                                        '<img src="../images/regular/regular_1_half.png" alt="1.5 stars">',
+                                        '<img src="../images/regular/regular_1.png" alt="1 star">'
                                     ];
 
                                             if (yelpObj.businesses[i].rating === 5){
