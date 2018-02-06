@@ -1,34 +1,79 @@
 var map;
 var latLong = '';
 
-//This is the initial map view upon loading
+//Initialize map - this works
 function initMap() {
-    var userLocation = {lat: 41.89633, lng: -87.61871};
+    var userLocation = {lat: 41.89635, lng: -87.61866};
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 13,
-      center: userLocation,
-      gestureHandling: 'cooperative'
+        zoom: 13,
+        center: userLocation,
+        gestureHandling: 'cooperative'
     });
+
+    //Show custom marker for user position
+    var marker = new google.maps.Marker({
+        position: userLocation,
+        map: map,
+        title: 'User'
+      });
 }
 
-// Update Google Map with a view of the location requested by user
+
+// $(document).ready(function() {
+
+//     // $(function(){
+//     //     getLocation(navigator.geolocation);
+//     // });
+
+//     $('#useLocation').on('click', function(){
+//         getLocation(navigator.geolocation);
+//     });
+    
+//     function getLocation() {
+//         if (navigator.geolocation) {
+//             navigator.geolocation.getCurrentPosition(showPosition);
+//         } else { 
+//             $('.search-box').text("Geolocation is not supported by this browser. Please enter a zip code.");
+//         }
+//     }
+
+//     function showPosition(position) {
+//         var latitude =  position.coords.latitude;
+//         var longitude = position.coords.longitude;
+//             var userLocation = {lat: latitude, lng: longitude};
+//             console.log(userLocation);
+
+//         //Show custom marker for user position
+//         var marker = new google.maps.Marker({
+//             position: userLocation,
+//             map: map,
+//             title: 'Your Location'
+//       });
+    
+//         var latLong = latitude + "/" + longitude; 
+//         console.log(latLong);   
+//         return latLong;
+//     }
+    
+//     // $('#useLocation').on('click', function(){
+//     //     getLocation(navigator.geolocation);
+//     // }
+// });
+
+// Update Google Map with a view of the location inputted by user
 function updateMap() {
     var mapSplit = latLong.split("/");
-    var userLocation = {lat: parseFloat(mapSplit[0]), lng: parseFloat(mapSplit[1])};
+    // var userLocation = {lat: parseFloat(mapSplit[0]), lng: parseFloat(mapSplit[1])};
+    var userLocation = {lat: position.coords.latitude, lng: position.coords.longitude};//updates the user position based on inputted location
+    console.log(userLocation);
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 13,
       center: userLocation,
-      gestureHandling: 'cooperative'
-    });
-
-    //Turning this off - may use this as a custom marker for user position
-    var marker = new google.maps.Marker({
-      position: userLocation,
-      map: map,
-      title: 'User'
+      gestureHandling: 'cooperative',
     });
 }
 
+//Alt: use zip code to run search
 var getLatLng = function() {
 
     var APIKey = '&key=AIzaSyCRYYladM1Ui9mjSl2TgmWoTwj_tCO4Lxc';
@@ -49,11 +94,14 @@ var getLatLng = function() {
         runQuery(latLong);
   
       });
+
+      $('#location-input').val('');
  }
  $('.submit').on('click', getLatLng);
 
 //Put yelp query function here
 function runQuery(latLong){
+    $('.search-results').empty('');
 
     var queryURL = 'https://cors-anywhere.herokuapp.com/' + 'https://nu-yelp-api.herokuapp.com/api/all/' + latLong + '/1/3219';
     var restaurantCounter = 0;
@@ -90,6 +138,9 @@ function runQuery(latLong){
                                             favButton.append("add to favs");
 
                 newResult.html(resultOutput);
+                if (yelpObj.businesses[i].is_closed === false){
+                    newResult.append('<p class=“open”> Open Now </p>');
+                };
 
                                     var imageLinks = [
                                         '<img src="assets/images/regular/regular_5.png" alt="5 stars">',
