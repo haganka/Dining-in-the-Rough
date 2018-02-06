@@ -47,6 +47,7 @@ function updateMap() {
     });
 }
 var getLatLng = function(event) {
+
     var APIKey = '&key=AIzaSyCRYYladM1Ui9mjSl2TgmWoTwj_tCO4Lxc';
     event.preventDefault();
     var getZip = $('#location-input').val();
@@ -74,7 +75,7 @@ var getLatLng = function(event) {
       // clears out html at location-input
       $('#location-input').val('');
 }
-$('.submit').on('click'|| event.keyCode === 13, getLatLng);
+$('.submit').on('click', getLatLng);
 
 //Put yelp query function here
 function runQuery(latLong) {
