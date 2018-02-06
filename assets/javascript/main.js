@@ -56,12 +56,26 @@ var getLatLng = function() {
         url: queryURL,
         method: 'GET'
     }).then(function(response) {
-        latLong = response.results[0].geometry.location.lat + '/' + response.results[0].geometry.location.lng;
-        console.log(latLong);
-        runQuery(latLong);
-    });
+        console.log("response", response);
+        console.log(response.status);
+
+        if (response.status === "ZERO_RESULTS")
+            {
+            //  $('#status').css( 'display', 'block').html('<h3>' + 'Bad Zip Code - Try again' + '</h3>');
+         console.log("error in getting lat/long from zip");
+            }else
+           
+           {
+                latLong = response.results[0].geometry.location.lat + '/' + response.results[0].geometry.location.lng;
+                console.log(latLong);
+                runQuery(latLong);
+            }
+      });
+      // clears out html at location-input
+      $('#location-input').val('');
 }
 $('.submit').on('click', getLatLng);
+
 //Put yelp query function here
 function runQuery(latLong) {
     var queryURL = 'https://cors-anywhere.herokuapp.com/' + 'https://nu-yelp-api.herokuapp.com/api/all/' + latLong + '/1/3219';
