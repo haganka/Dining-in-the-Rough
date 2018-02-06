@@ -108,19 +108,21 @@ function runQuery(latLong) {
                 newResult.addClass('result');
                 newResult.attr('id', 'restaurant-' + restaurantCounter);
                 $('.search-results').append(newResult);
-                var resultOutput = '<p class="title">' + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' +
+                var resultOutput = '<div class="result-box"><p class="title">' + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' +
                     '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' +
                     `<p class=rating${i}>` + '</p>' +
-                    '<p class="reviews"><a target="_blank" href=' + yelpObj.businesses[i].url + '>' + 'Based on ' + yelpObj.businesses[i].review_count + ' Reviews' + '</a></p>';
+                    '</div>';
                 var favButton = $('<button>');
                 favButton.attr('id', restaurantCounter);
                 favButton.attr('class', 'favBox btn btn-default');
                 favButton.attr("data-name", yelpObj.businesses[i].name);
                 favButton.attr("data-url", yelpObj.businesses[i].url);
-                favButton.append("add to favs");
+                // favButton.append("Add to favorites");
                 newResult.html(resultOutput);
                     if (yelpObj.businesses[i].is_closed === false){
                         newResult.append("<p class='open'> Open Now </p>");
+                    }else{
+                        newResult.append("<p class='closed'>Closed</p>")
                     };
 
                 var imageLinks = [
@@ -134,26 +136,39 @@ function runQuery(latLong) {
                     '<img src="assets/images/regular/regular_1_half.png" alt="1.5 stars">',
                     '<img src="assets/images/regular/regular_1.png" alt="1 star">'
                 ];
+
+                var anchorTag = '     <a class= "review" target="_blank" href=' + yelpObj.businesses[i].url + '>' + '    Based on ' + yelpObj.businesses[i].review_count + ' Reviews' + '</a>'
                 if (yelpObj.businesses[i].rating === 5) {
-                    $('.rating' + i).html(imageLinks[0]);
+                    $('.rating' + i).html(imageLinks[0] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 4.5) {
-                    $('.rating' + i).html(imageLinks[1]);
+                    $('.rating' + i).html(imageLinks[1] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 4) {
-                    $('.rating' + i).html(imageLinks[2]);
+                    $('.rating' + i).html(imageLinks[2] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 3.5) {
-                    $('.rating' + i).html(imageLinks[3]);
+                    $('.rating' + i).html(imageLinks[3] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 3) {
-                    $('.rating' + i).html(imageLinks[4]);
+                    $('.rating' + i).html(imageLinks[4] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 2.5) {
-                    $('.rating' + i).html(imageLinks[5]);
+                    $('.rating' + i).html(imageLinks[5] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 2) {
-                    $('.rating' + i).html(imageLinks[6]);
+                    $('.rating' + i).html(imageLinks[6] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 1.5) {
-                    $('.rating' + i).html(imageLinks[7]);
+                    $('.rating' + i).html(imageLinks[7] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 1) {
-                    $('.rating' + i).html(imageLinks[8]);
+                    $('.rating' + i).html(imageLinks[8] + anchorTag);
                 }
-                newResult.prepend(favButton);
+                // newResult.append(favButton + '<p class=favs>' + 'Add to favorites!' + '</p>');
+                newResult.append(favButton);
+                newResult.append('<p id=favs class=hide class=show>' + " Add to favorites!" + '</p>');
+                
+                // var addFavorites = function(){
+                //     $(".favs").toggle("hide");
+                // }
+
+                $("#favBox").hover(function() {
+                    $(".favs", this ).toggle("hide");
+                    });
+
         }
         /* Update Map with location after location is entered */
             updateMap();

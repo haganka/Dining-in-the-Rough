@@ -1,5 +1,6 @@
 h1 {
-    text-align: center;
+    text-align: left;
+    color: rgb(75, 75, 75);
 }
 
 .background {
@@ -35,4 +36,97 @@ h1 {
 
 #map {
     height: 400px;
+    position: fixed;
+}
+
+/* .search-results {
+    border: 1px solid rgb(242, 195, 107);
+    color: rgb(145, 14, 14);
+} */
+
+.result {
+    color: rgb(61, 61, 61);
+    border: 1px solid rgb(242, 141, 82);
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 10px;
+
+
+}
+
+.result:hover {
+    box-shadow: 0 0 6px rgb(242, 141, 107);
+
+}
+
+.review {
+    text-align: center;
+}
+
+.open {
+    color: green;
+}
+
+.closed {
+    color: red;
+}
+
+.title {
+    font-size: 22px;
+}
+
+p {
+    font-size: 16px;
+}
+
+#zip {
+    font-size: 16px;
+}
+
+.submit {
+    font-size: 16px;
+}
+
+.btn-default, #location-input {
+    border: 1px solid rgb(242, 141, 82);
+}
+
+.submit:hover, #useLocation:hover {
+    background-color: rgb(242, 141, 107);
+    border: 1px solid rgb(242, 141, 82);
+}
+
+.favBox {
+    border: none;
+    background-color: none;
+    background: url("../images/burger2.png") no-repeat left center;
+    height: 50px;
+    /* float: left; */
+}
+
+.favBox:hover {
+    /* background: url("../images/burger3.png") no-repeat left center; */
+    background: url("../images/burger2.png") no-repeat left center;
+    transform: scale(1.5);
+    background-color: none;
+}
+
+.favBox .favs { 
+    visibility: hidden
+}
+.faveBox .favs { 
+    visibility: visible;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: show;
+}
+
+.favBox:visited, .favBox:active {
+    border: none;
+    background-color: none;
 }
