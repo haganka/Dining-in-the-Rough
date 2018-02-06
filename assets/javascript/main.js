@@ -46,7 +46,7 @@ function updateMap() {
         title: 'User'
     });
 }
-var getLatLng = function() {
+var getLatLng = function(event) {
     var APIKey = '&key=AIzaSyCRYYladM1Ui9mjSl2TgmWoTwj_tCO4Lxc';
     event.preventDefault();
     var getZip = $('#location-input').val();
@@ -74,10 +74,14 @@ var getLatLng = function() {
       // clears out html at location-input
       $('#location-input').val('');
 }
-$('.submit').on('click', getLatLng);
+$('.submit').on('click'|| event.keyCode === 13, getLatLng);
 
 //Put yelp query function here
 function runQuery(latLong) {
+
+    //clear out search results 
+    $('.search-results').empty('');
+
     var queryURL = 'https://cors-anywhere.herokuapp.com/' + 'https://nu-yelp-api.herokuapp.com/api/all/' + latLong + '/1/3219';
     var restaurantCounter = 0;
     console.log(queryURL);
@@ -89,94 +93,106 @@ function runQuery(latLong) {
         var yelpObj = JSON.parse(yelpData);
         console.log(yelpObj);
 
-        for (var i = 0; i < 10; i++){
-            restaurantCounter++;
-            var newResult = $('<div>');
-            newResult.addClass('result');
-            newResult.attr('id', 'restaurant-' + restaurantCounter);
-            $('.search-results').append(newResult);
-            var resultOutput = '<p class="title">' + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' +
-                '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' +
-                `<p class=rating${i}>` + '</p>' +
-                '<p class="reviews"><a target="_blank" href=' + yelpObj.businesses[i].url + '>' + 'Based on ' + yelpObj.businesses[i].review_count + ' Reviews' + '</a></p>';
-            var favButton = $('<button>');
-            favButton.attr('id', restaurantCounter);
-            favButton.attr('class', 'favBox btn btn-default');
-            favButton.attr("data-name", yelpObj.businesses[i].name);
-            favButton.attr("data-url", yelpObj.businesses[i].url);
-            favButton.append("add to favs");
-            newResult.html(resultOutput);
-            var imageLinks = [
-                '<img src="assets/images/regular/regular_5.png" alt="5 stars">',
-                '<img src="assets/images/regular/regular_4_half.png" alt="4.5 stars">',
-                '<img src="assets/images/regular/regular_4.png" alt="4 stars">',
-                '<img src="assets/images/regular/regular_3_half.png" alt="3.5 stars">',
-                '<img src="assets/images/regular/regular_3.png" alt="3 stars">',
-                '<img src="assets/images/regular/regular_2_half.png" alt="2.5 stars">',
-                '<img src="assets/images/regular/regular_2.png" alt="2 stars">',
-                '<img src="assets/images/regular/regular_1_half.png" alt="1.5 stars">',
-                '<img src="assets/images/regular/regular_1.png" alt="1 star">'
-            ];
-            if (yelpObj.businesses[i].rating === 5) {
-                $('.rating' + i).html(imageLinks[0]);
-            } else if (yelpObj.businesses[i].rating === 4.5) {
-                $('.rating' + i).html(imageLinks[1]);
-            } else if (yelpObj.businesses[i].rating === 4) {
-                $('.rating' + i).html(imageLinks[2]);
-            } else if (yelpObj.businesses[i].rating === 3.5) {
-                $('.rating' + i).html(imageLinks[3]);
-            } else if (yelpObj.businesses[i].rating === 3) {
-                $('.rating' + i).html(imageLinks[4]);
-            } else if (yelpObj.businesses[i].rating === 2.5) {
-                $('.rating' + i).html(imageLinks[5]);
-            } else if (yelpObj.businesses[i].rating === 2) {
-                $('.rating' + i).html(imageLinks[6]);
-            } else if (yelpObj.businesses[i].rating === 1.5) {
-                $('.rating' + i).html(imageLinks[7]);
-            } else if (yelpObj.businesses[i].rating === 1) {
-                $('.rating' + i).html(imageLinks[8]);
-            }
-            newResult.prepend(favButton);
+        //error handling - if business array is empty, let's help the user with feedback
+        if  (yelpObj.businesses.length === 0)
+
+        { console.log('no businesses returned - try different error');
+        
+            // $('#status').css( 'display', 'block').html('<h3>' + 'Error' + '</h3>').delay(9000).css( 'display' , 'hidden');
+        }else {
+
+            for (var i = 0; i < 10; i++){
+                restaurantCounter++;
+                var newResult = $('<div>');
+                newResult.addClass('result');
+                newResult.attr('id', 'restaurant-' + restaurantCounter);
+                $('.search-results').append(newResult);
+                var resultOutput = '<p class="title">' + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' +
+                    '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' +
+                    `<p class=rating${i}>` + '</p>' +
+                    '<p class="reviews"><a target="_blank" href=' + yelpObj.businesses[i].url + '>' + 'Based on ' + yelpObj.businesses[i].review_count + ' Reviews' + '</a></p>';
+                var favButton = $('<button>');
+                favButton.attr('id', restaurantCounter);
+                favButton.attr('class', 'favBox btn btn-default');
+                favButton.attr("data-name", yelpObj.businesses[i].name);
+                favButton.attr("data-url", yelpObj.businesses[i].url);
+                favButton.append("add to favs");
+                newResult.html(resultOutput);
+                    if (yelpObj.businesses[i].is_closed === false){
+                        newResult.append("<p class='open'> Open Now </p>");
+                    };
+
+                var imageLinks = [
+                    '<img src="assets/images/regular/regular_5.png" alt="5 stars">',
+                    '<img src="assets/images/regular/regular_4_half.png" alt="4.5 stars">',
+                    '<img src="assets/images/regular/regular_4.png" alt="4 stars">',
+                    '<img src="assets/images/regular/regular_3_half.png" alt="3.5 stars">',
+                    '<img src="assets/images/regular/regular_3.png" alt="3 stars">',
+                    '<img src="assets/images/regular/regular_2_half.png" alt="2.5 stars">',
+                    '<img src="assets/images/regular/regular_2.png" alt="2 stars">',
+                    '<img src="assets/images/regular/regular_1_half.png" alt="1.5 stars">',
+                    '<img src="assets/images/regular/regular_1.png" alt="1 star">'
+                ];
+                if (yelpObj.businesses[i].rating === 5) {
+                    $('.rating' + i).html(imageLinks[0]);
+                } else if (yelpObj.businesses[i].rating === 4.5) {
+                    $('.rating' + i).html(imageLinks[1]);
+                } else if (yelpObj.businesses[i].rating === 4) {
+                    $('.rating' + i).html(imageLinks[2]);
+                } else if (yelpObj.businesses[i].rating === 3.5) {
+                    $('.rating' + i).html(imageLinks[3]);
+                } else if (yelpObj.businesses[i].rating === 3) {
+                    $('.rating' + i).html(imageLinks[4]);
+                } else if (yelpObj.businesses[i].rating === 2.5) {
+                    $('.rating' + i).html(imageLinks[5]);
+                } else if (yelpObj.businesses[i].rating === 2) {
+                    $('.rating' + i).html(imageLinks[6]);
+                } else if (yelpObj.businesses[i].rating === 1.5) {
+                    $('.rating' + i).html(imageLinks[7]);
+                } else if (yelpObj.businesses[i].rating === 1) {
+                    $('.rating' + i).html(imageLinks[8]);
+                }
+                newResult.prepend(favButton);
         }
         /* Update Map with location after location is entered */
-        updateMap();
-        for (var i = 0; i < 10; i++) {
-            var infowindow = new google.maps.InfoWindow();
-            var myLatLng = new google.maps.LatLng((yelpObj.businesses[i].coordinates.latitude), (yelpObj.businesses[i].coordinates.longitude));
-            var marker = new google.maps.Marker({
-                position: myLatLng,
-                map: map,
-                animation: google.maps.Animation.DROP,
-            });
-        
-            var link = $(this).attr('data-url');
-            link = '  <a target="_blank" href=' + link + '>' + "Link to Yelp" + '</a>';
-            var content ='<div class="info-window">'
-            + '<h4>' + yelpObj.businesses[i].name + '</h4>'
-            + '<p>' +  yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>'
-            + '<p>' + link + '</p>'
-            + '</div>';
-            console.log("content", content);
+            updateMap();
+            for (var i = 0; i < 10; i++) {
+                var infowindow = new google.maps.InfoWindow();
+                var myLatLng = new google.maps.LatLng((yelpObj.businesses[i].coordinates.latitude), (yelpObj.businesses[i].coordinates.longitude));
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                });
+            
+                var link = $(this).attr('data-url');
+                link = '  <a target="_blank" href=' + link + '>' + "Link to Yelp" + '</a>';
+                var content ='<div class="info-window">'
+                + '<h4>' + yelpObj.businesses[i].name + '</h4>'
+                + '<p>' +  yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>'
+                + '<p>' + link + '</p>'
+                + '</div>';
+                console.log("content", content);
 
-            // if (yelpObj.businesses[i].is_closed === false){
-            //     newResult.append('<p class="open">Open Now</p>');
-            //     var open = "Open Now";
-            // }else{
-            //     open = "Closed";
-            // };
+                // if (yelpObj.businesses[i].is_closed === false){
+                //     newResult.append('<p class="open">Open Now</p>');
+                //     var open = "Open Now";
+                // }else{
+                //     open = "Closed";
+                // };
 
-            var infowindow = new google.maps.InfoWindow({});
-                // google.maps.event.addListener(marker, 'click', function() {
-                //   info_window.open(map, marker);
-            google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
-                    return function() {
-                    infowindow.setContent(content);
-                    console.log(open);
-                    infowindow.open(map,marker);
-                    };
-                })(marker,content,infowindow)); 
+                var infowindow = new google.maps.InfoWindow({});
+                    // google.maps.event.addListener(marker, 'click', function() {
+                    //   info_window.open(map, marker);
+                google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+                        return function() {
+                        infowindow.setContent(content);
+                        console.log(open);
+                        infowindow.open(map,marker);
+                        };
+                    })(marker,content,infowindow)); 
 
             }
-
+        }
     });
 }
