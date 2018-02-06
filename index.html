@@ -21,11 +21,11 @@
                 <img id="header-image" class="img-responsive center-block" src="assets/images/food_background.jpg" alt="yummy food"/>
                 <div class="row"> -->
             <div class="col-md-offset-3 col-md-6 search-box">
-                <form class="form-inline">
+                <form class="form-inline" onkeypress="return event.keyCode !=13;">
                     <div class="form">
                         <button class="btn btn-default" id="useLocation">Use My Location</button>
                         <label for="inputLocation">Enter your zip code to find cheap eats near you</label>
-                        <input type="location" class="form-control" id="location-input" placeholder="zip code">
+                        <input type="number" class="form-control" id="location-input" placeholder="zip code">
                         <button type="submit" class="btn btn-default submit">Submit</button>
                     </div>
                 </form>
