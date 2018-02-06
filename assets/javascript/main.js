@@ -66,6 +66,7 @@ function runQuery(latLong){
 
         //make the yelpData into an object
         var yelpObj = JSON.parse(yelpData);
+        console.log(yelpObj);
 
         for (var i = 0; i < 10; i++){
             restaurantCounter++;
@@ -90,6 +91,11 @@ function runQuery(latLong){
                                             favButton.append("add to favs");
 
                 newResult.html(resultOutput);
+                if (yelpObj.businesses[i].is_closed === false){
+                    var open = newResult.append('<p class="open">Open Now</p>');
+                }else{
+                    open = newResult.append('<p class="open">Closed</p>');
+                };
 
                                     var imageLinks = [
                                         '<img src="assets/images/regular/regular_5.png" alt="5 stars">',
@@ -146,7 +152,35 @@ function runQuery(latLong){
                 map: map,
                 animation: google.maps.Animation.DROP,
             });
-        }
+        
+            var link = $(this).attr('data-url');
+            link = '  <a target="_blank" href=' + link + '>' + "Link to Yelp" + '</a>';
+            var content ='<div class="info-window">'
+            + '<h4>' + yelpObj.businesses[i].name + '</h4>'
+            + '<p>' +  yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>'
+            + '<p>' + link + '</p>'
+            + '</div>';
+            console.log("content", content);
+
+            // if (yelpObj.businesses[i].is_closed === false){
+            //     newResult.append('<p class="open">Open Now</p>');
+            //     var open = "Open Now";
+            // }else{
+            //     open = "Closed";
+            // };
+
+            var infowindow = new google.maps.InfoWindow({});
+                // google.maps.event.addListener(marker, 'click', function() {
+                //   info_window.open(map, marker);
+            google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+                    return function() {
+                    infowindow.setContent(content);
+                    console.log(open);
+                    infowindow.open(map,marker);
+                    };
+                })(marker,content,infowindow)); 
+
+            }
 
     });
 }
