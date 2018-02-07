@@ -1,6 +1,17 @@
 h1 {
     text-align: left;
-    color: rgb(75, 75, 75);
+    color: rgb(255, 255, 255);
+    font-family: 'Londrina Solid', cursive;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(115, 41, 41);
+    color: rgb(255, 255, 255);
+}
+
+#zip {
+    color: rgb(49, 49, 49);
 }
 
 .background {
@@ -45,12 +56,11 @@ h1 {
 } */
 
 .result {
-    color: rgb(61, 61, 61);
+    color: rgb(255, 255, 255);
     border: 1px solid rgb(242, 141, 82);
     padding: 15px;
     margin-top: 15px;
     border-radius: 10px;
-
 
 }
 
@@ -64,11 +74,11 @@ h1 {
 }
 
 .open {
-    color: green;
+    color: rgb(139, 228, 139);
 }
 
 .closed {
-    color: red;
+    color: rgb(240, 95, 95);
 }
 
 .title {
@@ -77,6 +87,10 @@ h1 {
 
 p {
     font-size: 16px;
+}
+
+a {
+    color: rgb(97, 149, 218);
 }
 
 #zip {
@@ -105,7 +119,12 @@ p {
 }
 
 .favBox:hover {
-    /* background: url("../images/burger3.png") no-repeat left center; */
+    background: url("../images/burger2.png") no-repeat left center;
+    transform: scale(1.5);
+    background-color: none;
+}
+
+.favBox:visited, .favBox:active {
     background: url("../images/burger2.png") no-repeat left center;
     transform: scale(1.5);
     background-color: none;
@@ -129,4 +148,33 @@ p {
 .favBox:visited, .favBox:active {
     border: none;
     background-color: none;
+}
+
+.delete {
+    display: inline-block;
+    padding: 1px 5px;
+    margin-bottom: 0;
+    margin-right: 15px;
+    font-size: 14px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #333;
+    background-color: #fff;
+    opacity: 0.5;
+    border-color: #ccc;
+}
+
+.review {
+    padding-left: 20px;
+}
+
+.saved-places {
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(242, 141, 82);
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 10px;
 }

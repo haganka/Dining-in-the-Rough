@@ -10,7 +10,7 @@ function saveRestaurant(event){
 
     var rest = $(this).attr('data-name');
     var link = $(this).attr('data-url');
-    link = '  <a target="_blank" href=' + link + '>' + "Link to Yelp" + '</a>';
+    link = '  <a target="_blank" href=' + link + '>' + "Visit on Yelp" + '</a>';
     var save = [rest, link];
     console.log("link", link);
     console.log("rest", rest);
@@ -36,7 +36,7 @@ function putOnPage () {
     }
     for (var i = 0; i < insideFavorites.length; i++) {
         var name = $("<p>").append(insideFavorites[i]);
-        var remove = $("<button class='delete'>").text("Remove").attr("data-index", i);
+        var remove = $("<button class='delete'>").text("x").attr("data-index", i);
         name.prepend(remove);
         $(".saved-list").append(name);
         // $(".saved-places").append(insideFavorites[i]);
