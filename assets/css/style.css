@@ -1,16 +1,49 @@
+.top{
+    background-color:#732929;
+}
+
 h1 {
+    text-align: left;
+    font-family: 'Londrina Solid', cursive;
+    font-size: 60px;
+    color: white;
+}
+
+#slogan {
+    color: white;
+    font-size: 32px;
+    padding-top: 10px;
+}
+
+h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
     text-align: center;
+    color:#732929;
+}
+
+p, form {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+a {
+   color: #596e90;
+}
+
+.title {
+    font-weight: bold;
+    color:#732929;
 }
 
 .background {
-    background: url("../images/food_background.jpg");
+    background-image: url("../images/food_background.jpg");
     height: 400px;
 }
 
 #header-image {
     height: 200px;
 }
-
 
 .navbar {
     text-align: center;
@@ -27,6 +60,7 @@ h1 {
     padding: 50px;
     margin-top: 150px;
     border-radius: 10px;
+    opacity: 0.95;
 }
 
 .form-inline {
@@ -34,5 +68,34 @@ h1 {
 }
 
 #map {
-    height: 400px;
+    min-height: 400px;
+    min-width: 400px;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.modal-content {
+   font-family: 'Londrina Solid', cursive;
+   align-content: center;
+}
+
+.modal-header {
+    font-family: 'Londrina Solid', cursive;
+    font-size: 25px;
+    background-color: rgb(242,141,82);
+    color:  rgb(255, 255, 255);
+    text-align: center;
+}
+.modal-body {
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: 'Londrina Solid', cursive;
+    color: rgb(242,141,82);
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+}
+.modal-footer button {
+    font-family: 'Londrina Solid', cursive;
+    background-color: rgb(242,141,82);
+    color:  rgb(255, 255, 255);
 }
