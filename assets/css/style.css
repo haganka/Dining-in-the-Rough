@@ -1,14 +1,20 @@
+.top, .footer {
+    background-color:#732929;
+}
+
 h1 {
     text-align: left;
     color: rgb(255, 255, 255);
     font-family: 'Londrina Solid', cursive;
+    font-size: 60px;
 }
 
-.header {
-    font-family: 'Roboto', sans-serif;
-    background-color: rgb(115, 41, 41);
-    color: rgb(255, 255, 255);
+#slogan {
+    color: white;
+    font-size: 32px;
+    padding-top: 10px;
 }
+
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -22,11 +28,14 @@ body {
 
 h3 {
     font-family: 'Oswald', sans-serif;
+    color: rgb(115, 41, 41);
+    font-size: 28px;
+    text-align: center;
 }
 
 .background {
     background: url("../images/food_background.jpg");
-    height: 400px;
+    height: 350px;
 }
 
 #header-image {
@@ -47,9 +56,9 @@ h3 {
 .search-box {
     background: rgb(255, 255, 255);
     padding: 50px;
-    margin-top: 150px;
+    margin-top: 75px;
     border-radius: 5px;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
 .form-inline {
@@ -58,26 +67,26 @@ h3 {
 
 #map {
     height: 400px;
-    position: fixed;
 }
 
-/* .search-results {
-    border: 1px solid rgb(242, 195, 107);
-    color: rgb(145, 14, 14);
-} */
+.results {
+    overflow: scroll;
+    height: 500px;
+ }
 
 .result {
     color: rgb(49, 49, 49);
-    border: 1px solid rgb(242, 141, 82);
+    border: 1px solid rgb(115, 41, 41);
     padding: 15px;
-    margin-top: 15px;
+    margin-bottom: 15px;
     border-radius: 5px;
-    margin-left: 20px;
+    margin-left: 3px;
+    margin-right: 3px;
     z-index: -1;
 }
 
 .result:hover {
-    box-shadow: 0 0 9px rgb(242, 141, 107);
+    box-shadow: 0 0 9px rgb(115, 41, 41);
 
 }
 
@@ -86,7 +95,7 @@ h3 {
 }
 
 .open {
-    color: rgb(139, 228, 139);
+    color: rgb(98, 216, 98);
     overflow: hidden;
 }
 
@@ -94,17 +103,16 @@ h3 {
     color: rgb(240, 95, 95);
 }
 
-.title {
-    font-size: 22px;
-}
 
-p {
+p, form {
     font-size: 16px;
+    font-family: "Roboto", sans-serif;
 }
 
 a {
-    color: rgb(97, 149, 218);
+    color: #596e90;
 }
+
 
 #zip {
     font-size: 16px;
@@ -112,42 +120,41 @@ a {
 
 .submit {
     font-size: 16px;
-    opacity: 1;
+    font-weight: bold;
+}
+
+#useLocation {
+    font-weight: bold;
 }
 
 .btn-default, #location-input {
-    border: 1px solid rgb(242, 141, 82);
+    border: 1px solid #596e90;
     opacity: 1;
     z-index: 1;
 }
 
 .submit:hover, #useLocation:hover {
-    background-color: rgb(242, 141, 107);
-    border: 1px solid rgb(242, 141, 82);
+    background-color: #596e90;
+    border: 1px solid #596e90;
+    color: rgb(255, 255, 255);
 }
 
 .favBox, .favBox:active, .favBox:visited {
     border: none;
     outline: none;
     background-color: none;
-    background: url("../images/burger2.png") no-repeat left center;
-    height: 50px;
-    /* float: left; */
+    /* background: url("../images/burger.png") no-repeat left center; */
+    height: 30px;
+    width: auto;
+    margin-top: -10px;
 }
 
 .favBox:hover {
-    background: url("../images/burger2.png") no-repeat left center;
+    /* background: url("../images/burger.png") no-repeat left center; */
     transform: scale(1.5);
     background-color: none;
 }
 
-
-.favBox .favs { 
-    visibility: hidden
-}
-.faveBox .favs { 
-    visibility: visible;
-}
 
 .hidden {
     visibility: hidden;
@@ -161,7 +168,7 @@ a {
 
 .delete {
     display: inline-block;
-    padding: 1px 5px;
+    padding: 1px 20px;
     margin-bottom: 0;
     margin-right: 15px;
     font-size: 14px;
@@ -182,20 +189,18 @@ a {
 
 .saved-list {
     color: rgb(49, 49, 49);
-    border: 1px solid rgb(242, 141, 82);
+    border: 1px solid rgb(115, 41, 41);
     padding-left: 10px;
     padding-top: 10px;
-    padding-right: 200px;
-    margin-top: 15px;
+    /* margin-top: 15px; */
     border-radius: 5px;
-    float: left;
+
 
 }
 
 .info-window {
     color: rgb(49, 49, 49);
 }
-
 
 
 .result-box {
@@ -214,3 +219,20 @@ a {
 #favs {
     margin-left: 20px;
 }
+
+button:visited, button:active {
+    outline: none;
+    border: none;
+}
+
+.burger {
+    height: 30px;
+    margin-top: -5px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+

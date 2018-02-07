@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title></title>
+    <title>Dining in the Rough</title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Londrina+Solid|Oswald|+Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -12,9 +12,12 @@
 <body>
 
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12 header">
+        <div class="row top">
+            <div class="col-md-6 ">
                 <h1>DINING IN THE ROUGH</h1>
+            </div>
+            <div class="col-md-6">
+                <h3 id="slogan">FIND TASTY CHEAP EATS NEARBY</h3>
             </div>
         </div>
         <div class="row background">
@@ -24,10 +27,11 @@
             <div class="col-md-offset-3 col-md-6 search-box">
                 <form class="form-inline" onkeypress="return event.keyCode !=13;">
                     <div class="form">
-                        <button class="btn btn-default" id="useLocation">Use My Location</button>
-                        <label for="inputLocation" id="zip">Enter your zip code</label>
+                        <p>Find restaurants with the best ratings and the lowest prices within walking distance of your location.</p><br />
+                        <button class="btn btn-default button" id="useLocation">Use My Location</button>
+                        <label for="inputLocation" id="zip">OR enter your zip code</label>
                         <input type="number" class="form-control" id="location-input" placeholder="zip code">
-                        <button type="submit" class="btn btn-default submit">Search</button>
+                        <button type="submit" class="btn btn-default button submit">Search</button>
                     </div>
                 </form>
             </div>
@@ -35,8 +39,8 @@
             </div> -->
         </div>
         <div class="row">
-            <div class="col-md-4">
-                <h3>Search Results</h3>
+            <div class="col-md-4 results">
+                <h3 id="searchHead">Search Results</h3>
                 <div class="search-results">
                 </div>
             </div>
@@ -46,8 +50,10 @@
                 </div>
             </div>
             <div class="col-md-4 saved-places">
-                <h3>My Favorites </h3>
-                    <div class="saved-list">
+                <h3>My Favorites 
+                    <img class ="burger" src="assets/images/burger.png" alt="burger icon" />
+                </h3>
+                    <div class="saved-list hidden">
                     </div>
                 </div>
             </div>

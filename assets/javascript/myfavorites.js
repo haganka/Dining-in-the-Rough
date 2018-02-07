@@ -2,6 +2,7 @@ var favorites = JSON.parse(localStorage.getItem("savedplaces"));
 
 if (!Array.isArray(favorites)) {
     favorites = [];
+    
 }
 
 function saveRestaurant(event){
@@ -18,6 +19,7 @@ function saveRestaurant(event){
     console.log("faves", favorites);
     localStorage.setItem("savedplaces", JSON.stringify(favorites));
 
+
 putOnPage();
 }
 
@@ -27,9 +29,8 @@ $(document).on("click", ".favBox", saveRestaurant);
 function putOnPage () {
     $(".saved-list").empty();
 
-
     var insideFavorites = JSON.parse(localStorage.getItem("savedplaces"));
-
+    var empty = true;
     if (!Array.isArray(insideFavorites)){
         insideFavorites = [];
         console.log("inside1", insideFavorites);
@@ -39,7 +40,14 @@ function putOnPage () {
         var remove = $("<button class='delete'>").text("x").attr("data-index", i);
         name.prepend(remove);
         $(".saved-list").append(name);
+        $('.saved-list').removeClass('hidden');
+        empty = false;
         // $(".saved-places").append(insideFavorites[i]);
+
+    }
+
+    if (empty){
+        $('.saved-list').addClass('hidden');
     }
     
 }

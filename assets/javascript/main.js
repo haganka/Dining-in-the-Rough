@@ -115,9 +115,9 @@ function runQuery(latLong) {
                     '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' +
                     `<p class=rating${i}>` + '</p>';
                     
-                var favButton = $('<button>');
+                var favButton = $('<button><img class="burger" src="assets/images/burger.png" alt="burger icon" /></button>');
                 favButton.attr('id', restaurantCounter);
-                favButton.attr('class', 'favBox btn btn-default');
+                favButton.attr('class', 'favBox button');
                 favButton.attr("data-name", yelpObj.businesses[i].name);
                 favButton.attr("data-url", yelpObj.businesses[i].url);
                
@@ -169,18 +169,22 @@ function runQuery(latLong) {
                 $('#'+ id).append(favButton);
                 $('#' + id).append('<span id=favs class=hidden >' + "Add to favorites!" + '</span>');
 
-                $('.favBox').mouseover(function(){
-                    $(this).siblings("#favs").toggleClass('hidden');
-                });
-                $('.favBox').mouseout(function(){
-                    $(this).siblings("#favs").toggleClass('hidden');
-            });
+                
 
                 newResult.prepend(imageAppend);
                 
 
 
         }
+
+        $('.favBox').mouseover(function(){
+            $(this).siblings("#favs").toggleClass('hidden');
+        });
+        $('.favBox').mouseout(function(){
+            $(this).siblings("#favs").toggleClass('hidden');
+        });
+
+
         /* Update Map with location after location is entered */
             updateMap();
             for (var i = 0; i < 10; i++) {
@@ -220,6 +224,7 @@ function runQuery(latLong) {
                     })(marker,content,infowindow)); 
 
             }
+        
         }
     });
 }
