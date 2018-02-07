@@ -178,3 +178,7 @@ a {
     margin-top: 15px;
     border-radius: 10px;
 }
+
+.info-window {
+    color: rgb(49, 49, 49);
+}
