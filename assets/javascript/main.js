@@ -108,9 +108,12 @@ function runQuery(latLong) {
                 newResult.addClass('result');
                 newResult.attr('id', 'restaurant-' + restaurantCounter);
                 $('.search-results').append(newResult);
+                var image = yelpObj.businesses[i].image_url;
+                var imageAppend = '<img class="image" + src=' + image + '>' 
                 var resultOutput = '<div class="result-box"><p class="title">' + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' +
                     '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' +
                     `<p class=rating${i}>` + '</p>' +
+                    // '<img class="image" + src=' + image + '>' + 
                     '</div>';
                 var favButton = $('<button>');
                 favButton.attr('id', restaurantCounter);
@@ -160,11 +163,9 @@ function runQuery(latLong) {
                 // newResult.append(favButton + '<p class=favs>' + 'Add to favorites!' + '</p>');
                 newResult.append(favButton);
                 newResult.append('<p id=favs class=hide class=show>' + " Add to favorites!" + '</p>');
+                newResult.prepend(imageAppend);
                 
-                // var addFavorites = function(){
-                //     $(".favs").toggle("hide");
-                // }
-
+                //this not working to toggle hide/show class
                 $("#favBox").hover(function() {
                     $(".favs", this ).toggle("hide");
                     });

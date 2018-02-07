@@ -62,10 +62,11 @@ body {
     margin-top: 15px;
     border-radius: 10px;
 
+
 }
 
 .result:hover {
-    box-shadow: 0 0 6px rgb(242, 141, 107);
+    box-shadow: 0 0 9px rgb(242, 141, 107);
 
 }
 
@@ -110,8 +111,9 @@ a {
     border: 1px solid rgb(242, 141, 82);
 }
 
-.favBox {
+.favBox, .favBox:active, .favBox:visited {
     border: none;
+    outline: none;
     background-color: none;
     background: url("../images/burger2.png") no-repeat left center;
     height: 50px;
@@ -124,11 +126,7 @@ a {
     background-color: none;
 }
 
-.favBox:visited, .favBox:active {
-    background: url("../images/burger2.png") no-repeat left center;
-    transform: scale(1.5);
-    background-color: none;
-}
+    
 
 .favBox .favs { 
     visibility: hidden
@@ -174,11 +172,16 @@ a {
 .saved-places {
     color: rgb(255, 255, 255);
     border: 1px solid rgb(242, 141, 82);
-    padding: 10px;
+    padding-left: 10px;
     margin-top: 15px;
     border-radius: 10px;
 }
 
 .info-window {
     color: rgb(49, 49, 49);
+}
+
+.image {
+    height: 175px;
+    float: left;
 }
