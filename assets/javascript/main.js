@@ -105,28 +105,33 @@ function runQuery(latLong) {
             for (var i = 0; i < 10; i++){
                 restaurantCounter++;
                 var newResult = $('<div>');
-                newResult.addClass('result');
+                newResult.addClass('result row');
                 newResult.attr('id', 'restaurant-' + restaurantCounter);
                 $('.search-results').append(newResult);
                 var image = yelpObj.businesses[i].image_url;
-                var imageAppend = '<img class="image" + src=' + image + '>' 
-                var resultOutput = '<div class="result-box"><p class="title">' + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' +
+                var id = yelpObj.businesses[i].id
+                var imageAppend = '<div class="col-md-4"><img class="imageThumbs" + src=' + image + '></div>' 
+                var resultOutput = `<div col-md-8 id=${id} class="result-box"><p class="title">` + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' +
                     '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' +
-                    `<p class=rating${i}>` + '</p>' +
-                    // '<img class="image" + src=' + image + '>' + 
-                    '</div>';
+                    `<p class=rating${i}>` + '</p>';
+                    
                 var favButton = $('<button>');
                 favButton.attr('id', restaurantCounter);
                 favButton.attr('class', 'favBox btn btn-default');
                 favButton.attr("data-name", yelpObj.businesses[i].name);
                 favButton.attr("data-url", yelpObj.businesses[i].url);
-                // favButton.append("Add to favorites");
-                newResult.html(resultOutput);
+               
+                    var open = false
                     if (yelpObj.businesses[i].is_closed === false){
-                        newResult.append("<p class='open'> Open Now </p>");
+                        open = true 
+                    }
+
+                    if (open){
+                        resultOutput += "<p class='open'>Open Now</p></div>";
                     }else{
-                        newResult.append("<p class='closed'>Closed</p>")
-                    };
+                        resultOutput += "<p class='closed'>Closed</p></div>";
+                    }
+                    newResult.html(resultOutput);
 
                 var imageLinks = [
                     '<img src="assets/images/regular/regular_5.png" alt="5 stars">',
@@ -160,15 +165,20 @@ function runQuery(latLong) {
                 } else if (yelpObj.businesses[i].rating === 1) {
                     $('.rating' + i).html(imageLinks[8] + anchorTag);
                 }
-                // newResult.append(favButton + '<p class=favs>' + 'Add to favorites!' + '</p>');
-                newResult.append(favButton);
-                newResult.append('<p id=favs class=hide class=show>' + " Add to favorites!" + '</p>');
+         
+                $('#'+ id).append(favButton);
+                $('#' + id).append('<span id=favs class=hidden >' + "Add to favorites!" + '</span>');
+
+                $('.favBox').mouseover(function(){
+                    $(this).siblings("#favs").toggleClass('hidden');
+                });
+                $('.favBox').mouseout(function(){
+                    $(this).siblings("#favs").toggleClass('hidden');
+            });
+
                 newResult.prepend(imageAppend);
                 
-                //this not working to toggle hide/show class
-                $("#favBox").hover(function() {
-                    $(".favs", this ).toggle("hide");
-                    });
+
 
         }
         /* Update Map with location after location is entered */
