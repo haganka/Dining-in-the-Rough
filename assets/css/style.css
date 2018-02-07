@@ -69,10 +69,13 @@ a {
 
 .search-box {
     background: rgb(255, 255, 255);
-    padding: 50px;
+    padding: 20px;
     margin-top: 75px;
     border-radius: 5px;
-    opacity: 0.95;
+    opacity: 0.9;
+    position: absolute;
+    top: 5px;
+    align-content: center;
 }
 
 .form-inline {
@@ -139,7 +142,7 @@ a {
 }
 
 .submit {
-    font-size: 16px;
+    font-size: 22px;
     font-weight: bold;
 }
 
@@ -281,4 +284,16 @@ input[type=number]::-webkit-outer-spin-button {
     font-family: 'Londrina Solid', cursive;
     background-color: rgb(242,141,82);
     color:  rgb(255, 255, 255);
+}
+
+
+.carousel-inner {
+    width: 100%;
+    height: 350px;
+    background-size: contain;
+
+}
+
+#description {
+    padding-bottom: 10px;
 }
