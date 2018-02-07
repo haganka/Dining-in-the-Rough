@@ -61,11 +61,15 @@ var getLatLng = function(event) {
         console.log(response.status);
 
         if (response.status === "ZERO_RESULTS")
+
             {
-            //  $('#status').css( 'display', 'block').html('<h3>' + 'Bad Zip Code - Try again' + '</h3>');
+          
          console.log("error in getting lat/long from zip");
-            }else
-           
+         $('#badZipModal').modal('show');
+            }
+            
+            else
+    
            {
                 latLong = response.results[0].geometry.location.lat + '/' + response.results[0].geometry.location.lng;
                 console.log(latLong);
@@ -95,12 +99,12 @@ function runQuery(latLong) {
         console.log(yelpObj);
 
         //error handling - if business array is empty, let's help the user with feedback
-        if  (yelpObj.businesses.length === 0)
+        if  (yelpObj.businesses.length === 0){
 
-        { console.log('no businesses returned - try different error');
+            $('#noResultModal').modal('show');
+        } 
         
-            // $('#status').css( 'display', 'block').html('<h3>' + 'Error' + '</h3>').delay(9000).css( 'display' , 'hidden');
-        }else {
+        else {
 
             for (var i = 0; i < 10; i++){
                 restaurantCounter++;
@@ -169,8 +173,7 @@ function runQuery(latLong) {
                 $('#'+ id).append(favButton);
                 $('#' + id).append('<span id=favs class=hidden >' + "Add to favorites!" + '</span>');
 
-                
-
+            
                 newResult.prepend(imageAppend);
                 
 
