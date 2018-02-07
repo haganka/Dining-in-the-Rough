@@ -109,23 +109,33 @@ function runQuery(latLong) {
             for (var i = 0; i < 10; i++){
                 restaurantCounter++;
                 var newResult = $('<div>');
-                newResult.addClass('result');
+                newResult.addClass('result row');
                 newResult.attr('id', 'restaurant-' + restaurantCounter);
                 $('.search-results').append(newResult);
-                var resultOutput = '<p class="title">' + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' +
+                var image = yelpObj.businesses[i].image_url;
+                var id = yelpObj.businesses[i].id
+                var imageAppend = '<div class="col-md-4"><img class="imageThumbs" + src=' + image + '></div>' 
+                var resultOutput = `<div col-md-8 id=${id} class="result-box"><p class="title">` + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' +
                     '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' +
-                    `<p class=rating${i}>` + '</p>' +
-                    '<p class="reviews"><a target="_blank" href=' + yelpObj.businesses[i].url + '>' + 'Based on ' + yelpObj.businesses[i].review_count + ' Reviews' + '</a></p>';
-                var favButton = $('<button>');
+                    `<p class=rating${i}>` + '</p>';
+                    
+                var favButton = $('<button><img class="burger" src="assets/images/burger.png" alt="burger icon" /></button>');
                 favButton.attr('id', restaurantCounter);
-                favButton.attr('class', 'favBox btn btn-default');
+                favButton.attr('class', 'favBox button');
                 favButton.attr("data-name", yelpObj.businesses[i].name);
                 favButton.attr("data-url", yelpObj.businesses[i].url);
-                favButton.append("add to favs");
-                newResult.html(resultOutput);
+               
+                    var open = false
                     if (yelpObj.businesses[i].is_closed === false){
-                        newResult.append("<p class='open'> Open Now </p>");
-                    };
+                        open = true 
+                    }
+
+                    if (open){
+                        resultOutput += "<p class='open'>Open Now</p></div>";
+                    }else{
+                        resultOutput += "<p class='closed'>Closed</p></div>";
+                    }
+                    newResult.html(resultOutput);
 
                 var imageLinks = [
                     '<img src="assets/images/regular/regular_5.png" alt="5 stars">',
@@ -138,27 +148,46 @@ function runQuery(latLong) {
                     '<img src="assets/images/regular/regular_1_half.png" alt="1.5 stars">',
                     '<img src="assets/images/regular/regular_1.png" alt="1 star">'
                 ];
+
+                var anchorTag = '     <a class= "review" target="_blank" href=' + yelpObj.businesses[i].url + '>' + '    Based on ' + yelpObj.businesses[i].review_count + ' Reviews' + '</a>'
                 if (yelpObj.businesses[i].rating === 5) {
-                    $('.rating' + i).html(imageLinks[0]);
+                    $('.rating' + i).html(imageLinks[0] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 4.5) {
-                    $('.rating' + i).html(imageLinks[1]);
+                    $('.rating' + i).html(imageLinks[1] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 4) {
-                    $('.rating' + i).html(imageLinks[2]);
+                    $('.rating' + i).html(imageLinks[2] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 3.5) {
-                    $('.rating' + i).html(imageLinks[3]);
+                    $('.rating' + i).html(imageLinks[3] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 3) {
-                    $('.rating' + i).html(imageLinks[4]);
+                    $('.rating' + i).html(imageLinks[4] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 2.5) {
-                    $('.rating' + i).html(imageLinks[5]);
+                    $('.rating' + i).html(imageLinks[5] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 2) {
-                    $('.rating' + i).html(imageLinks[6]);
+                    $('.rating' + i).html(imageLinks[6] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 1.5) {
-                    $('.rating' + i).html(imageLinks[7]);
+                    $('.rating' + i).html(imageLinks[7] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 1) {
-                    $('.rating' + i).html(imageLinks[8]);
+                    $('.rating' + i).html(imageLinks[8] + anchorTag);
                 }
-                newResult.prepend(favButton);
+         
+                $('#'+ id).append(favButton);
+                $('#' + id).append('<span id=favs class=hidden >' + "Add to favorites!" + '</span>');
+
+            
+                newResult.prepend(imageAppend);
+                
+
+
         }
+
+        $('.favBox').mouseover(function(){
+            $(this).siblings("#favs").toggleClass('hidden');
+        });
+        $('.favBox').mouseout(function(){
+            $(this).siblings("#favs").toggleClass('hidden');
+        });
+
+
         /* Update Map with location after location is entered */
             updateMap();
             for (var i = 0; i < 10; i++) {
@@ -198,6 +227,7 @@ function runQuery(latLong) {
                     })(marker,content,infowindow)); 
 
             }
+        
         }
     });
 }
