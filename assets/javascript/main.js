@@ -119,7 +119,7 @@ function runQuery(latLong) {
                     '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' +
                     `<p class=rating${i}>` + '</p>';
                     
-                var favButton = $('<button><img class="burger" src="assets/images/burger.png" alt="burger icon" /></button>');
+                var favButton = $('<button><img class="burger-icon" src="assets/images/burger.png" alt="burger icon" /></button>');
                 favButton.attr('id', restaurantCounter);
                 favButton.attr('class', 'favBox button');
                 favButton.attr("data-name", yelpObj.businesses[i].name);
@@ -244,7 +244,7 @@ function carousel() {
     myIndex++;
     if (myIndex > x.length) {myIndex = 1}    
     x[myIndex-1].style.display = "block";  
-    setTimeout(carousel, 10000); // Change image every 2 seconds
+    setTimeout(carousel, 1000); // Change image every 2 seconds
 };
 
 $('.carousel').carousel();
