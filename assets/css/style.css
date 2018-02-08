@@ -1,3 +1,11 @@
+body.modal-open .background {
+    -webkit-filter: blur(4px) grayscale(100%);
+    -moz-filter: blur(4px) grayscale(100%);
+    -o-filter: blur(4px) grayscale(100%);
+    -ms-filter: blur(4px) grayscale(100%);
+    filter: blur(4px) grayscale(100%);
+}
+
 .top, .footer {
     background-color:#732929;
 }
@@ -69,10 +77,11 @@ a {
 
 .search-box {
     background: rgb(255, 255, 255);
-    padding: 50px;
+    padding: 20px;
     margin-top: 75px;
     border-radius: 5px;
-    opacity: 0.95;
+    opacity: 0.85;
+    border-bottom: 10px;
 }
 
 .form-inline {
@@ -257,7 +266,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-
 .modal-content {
    font-family: 'Londrina Solid', cursive;
    align-content: center;
@@ -271,7 +279,6 @@ input[type=number]::-webkit-outer-spin-button {
     text-align: center;
 }
 .modal-body {
-    /* font-family: 'Roboto', sans-serif; */
     font-family: 'Londrina Solid', cursive;
     color: rgb(242,141,82);
     background-color: rgb(255, 255, 255);
@@ -281,4 +288,17 @@ input[type=number]::-webkit-outer-spin-button {
     font-family: 'Londrina Solid', cursive;
     background-color: rgb(242,141,82);
     color:  rgb(255, 255, 255);
+}
+
+#wait {
+    visibility: hidden;
+    padding: 0px;
+    margin: 0 auto;
+    transition: ease-in ;
+    z-index: 2000;
+}
+
+#wait img {
+    height: 65px;
+    width:  65px;
 }

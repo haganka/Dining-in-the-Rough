@@ -1,8 +1,17 @@
 var map;
 var latLong = '';
+
+//For progress animation - check if ajax is called and if it has completed
+$(document).ajaxStart(function(){
+    $("#wait").css("visibility", "visible");
+});
+$(document).ajaxComplete(function(){
+    $("#wait").css("visibility", "hidden");
+});
+
 //This is the initial map view upon loading
 function initMap() {
-    var userLocation = { lat: 41.89633, lng: -87.61871 };
+    var userLocation = { lat: 41.89633, lng: -87.61871 }; 
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
         center: userLocation,
@@ -12,13 +21,14 @@ function initMap() {
 //Get Location
 function getLocation(e) {
     e.preventDefault();
-    console.log("running");
+    
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
         $('.search-box').text("Geolocation is not supported by this browser. Please enter a zip code.");
     }
 }
+
 //enhance: add error handling for geolocation
 function showPosition(position) {
     var latitude = position.coords.latitude;
@@ -29,6 +39,7 @@ function showPosition(position) {
     return latLong;
 }
 $('#useLocation').on('click', getLocation);
+
 // Update Google Map with a view of the location requested by user
 function updateMap() {
     var mapSplit = latLong.split("/");
@@ -39,6 +50,7 @@ function updateMap() {
         center: userLocation,
         gestureHandling: 'cooperative'
     });
+
     //Turning this off - may use this as a custom marker for user position
     var marker = new google.maps.Marker({
         position: userLocation,
@@ -46,12 +58,18 @@ function updateMap() {
         title: 'User'
     });
 }
+
 var getLatLng = function(event) {
 
     var APIKey = '&key=AIzaSyCRYYladM1Ui9mjSl2TgmWoTwj_tCO4Lxc';
     event.preventDefault();
     var getZip = $('#location-input').val();
-    console.log(getZip);
+
+    if (!getZip)
+    {
+        $('#noLocationModal').modal('show');
+    }
+
     var queryURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + getZip;
     $.ajax({
         url: queryURL,
@@ -60,19 +78,14 @@ var getLatLng = function(event) {
         console.log("response", response);
         console.log(response.status);
 
-        if (response.status === "ZERO_RESULTS")
-
-            {
-          
-         console.log("error in getting lat/long from zip");
-         $('#badZipModal').modal('show');
-            }
-            
+        if (response.status === "ZERO_RESULTS"){
+            $('#badZipModal').modal('show');
+        }  
             else
-    
+
            {
                 latLong = response.results[0].geometry.location.lat + '/' + response.results[0].geometry.location.lng;
-                console.log(latLong);
+         
                 runQuery(latLong);
             }
       });
@@ -94,16 +107,16 @@ function runQuery(latLong) {
         url: queryURL,
         method: "GET"
     }).then(function(yelpData) {
+
         //make the yelpData into an object
         var yelpObj = JSON.parse(yelpData);
-        console.log(yelpObj);
 
         //error handling - if business array is empty, let's help the user with feedback
         if  (yelpObj.businesses.length === 0){
 
             $('#noResultModal').modal('show');
-        } 
-        
+        }
+
         else {
 
             for (var i = 0; i < 10; i++){
@@ -173,11 +186,8 @@ function runQuery(latLong) {
                 $('#'+ id).append(favButton);
                 $('#' + id).append('<span id=favs class=hidden >' + "Add to favorites!" + '</span>');
 
-            
                 newResult.prepend(imageAppend);
                 
-
-
         }
 
         $('.favBox').mouseover(function(){
@@ -206,7 +216,6 @@ function runQuery(latLong) {
                 + '<p>' +  yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>'
                 + '<p>' + link + '</p>'
                 + '</div>';
-                console.log("content", content);
 
                 // if (yelpObj.businesses[i].is_closed === false){
                 //     newResult.append('<p class="open">Open Now</p>');
@@ -216,8 +225,7 @@ function runQuery(latLong) {
                 // };
 
                 var infowindow = new google.maps.InfoWindow({});
-                    // google.maps.event.addListener(marker, 'click', function() {
-                    //   info_window.open(map, marker);
+
                 google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
                         return function() {
                         infowindow.setContent(content);
