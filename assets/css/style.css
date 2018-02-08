@@ -35,11 +35,6 @@ h3 {
     color:#732929;
 }
 
-p, form {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-}
-
 a {
    color: #596e90;
 }
@@ -47,11 +42,6 @@ a {
 .title {
     font-weight: bold;
     color:#732929;
-}
-
-.background {
-    background: url("../images/food_background.jpg");
-    height: 350px;
 }
 
 #header-image {
@@ -70,10 +60,13 @@ a {
 
 .search-box {
     background: rgb(255, 255, 255);
-    padding: 50px;
+    padding: 20px;
     margin-top: 75px;
     border-radius: 5px;
-    opacity: 0.95;
+    opacity: 0.85;
+    position: absolute;
+    top: 5px;
+    align-content: center;
 }
 
 .form-inline {
@@ -139,8 +132,7 @@ a {
     font-size: 16px;
 }
 
-.submit {
-    font-size: 16px;
+.submit, #useLocation {
     font-weight: bold;
 }
 
@@ -154,24 +146,31 @@ a {
     z-index: 1;
 }
 
+#location-input {
+    width: 100px;
+}
+
 .submit:hover, #useLocation:hover {
     background-color: #596e90;
     border: 1px solid #596e90;
     color: rgb(255, 255, 255);
 }
 
+.submit:active, .submit:visited, #useLocation:active, #useLocation:visited {
+    border: none;
+    outline: none;
+}
+
 .favBox, .favBox:active, .favBox:visited {
     border: none;
     outline: none;
     background-color: none;
-    /* background: url("../images/burger.png") no-repeat left center; */
     height: 30px;
     width: auto;
     margin-top: -10px;
 }
 
 .favBox:hover {
-    /* background: url("../images/burger.png") no-repeat left center; */
     transform: scale(1.5);
     background-color: none;
 }
@@ -182,26 +181,23 @@ a {
 }
 
 
-.favBox:visited, .favBox:active {
-    border: none;
-    background-color: none;
-}
-
 .delete {
     display: inline-block;
-    padding: 1px 20px;
     margin-bottom: 0;
-    margin-right: 15px;
+    margin-right: 20px;
     font-size: 14px;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    color: #333;
+    border-radius: 5px;
+    color: rgb(49, 49, 49);
     background-color: #fff;
     opacity: 0.5;
-    border-color: #ccc;
+    border: 1px solid #596e90;
+    margin-right: 20px;
+    border-radius: 5px;
+    padding: 1px, 5px;
+    margin-left: 10px;
 }
 
 .review {
@@ -213,10 +209,7 @@ a {
     border: 1px solid rgb(115, 41, 41);
     padding-left: 10px;
     padding-top: 10px;
-    /* margin-top: 15px; */
     border-radius: 5px;
-
-
 }
 
 .info-window {
@@ -246,7 +239,7 @@ button:visited, button:active {
     border: none;
 }
 
-.burger {
+.burger-icon {
     height: 30px;
     margin-top: -5px;
 }
@@ -256,8 +249,6 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
-
-
 
 .modal-content {
    font-family: 'Londrina Solid', cursive;
@@ -271,6 +262,7 @@ input[type=number]::-webkit-outer-spin-button {
     color:  rgb(255, 255, 255);
     text-align: center;
 }
+
 .modal-body {
     /* font-family: 'Roboto', sans-serif; */
     font-family: 'Londrina Solid', cursive;
@@ -278,7 +270,8 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: rgb(255, 255, 255);
     text-align: center;
 }
-.modal-footer button {
+
+.modal-footer  {
     font-family: 'Londrina Solid', cursive;
     background-color: rgb(242,141,82);
     color:  rgb(255, 255, 255);
@@ -308,4 +301,26 @@ input[type=number]::-webkit-outer-spin-button {
     border: 0;
     padding: 0;
     bottom: 10px;
+}
+
+.carousel-inner {
+    width: 100%;
+    height: 350px;
+    background-size: contain;
+    display: block;
+}
+
+.item {
+    object-fit: contain;
+}
+
+
+#description {
+    padding-bottom: 10px;
+}
+
+.right {
+    float: right;
+    margin-right: 20px;
+
 }

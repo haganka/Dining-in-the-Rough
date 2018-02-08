@@ -24,14 +24,38 @@
     </div>
 
     <div class="row background">
-        <div class="col-md-offset-3 col-md-6 search-box">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                                <img src="assets/images/foodtable.jpg" alt="counter of food">
+                        </div>
+                        <div class="item">
+                            <img src="assets/images/food_background.jpg" alt="table of food">
+                        </div>
+                        <div class="item">
+                            <img src="assets/images/donuts.jpg" alt="donuts">
+                        </div>
+                        <div class="item">
+                                <img src="assets/images/burger3.jpg" alt="burger">
+                        </div>
+                        <div class="item">
+                            <img src="assets/images/pizza.jpg" alt="pizza">
+                        </div>
+                        <div class="item">
+                            <img id="burger" class="img-responsive center-block" src="assets/images/burger_sign.jpg" alt="burger hungry sign">
+                        </div>
+                        <div class="item">
+                            <img src="assets/images/ramen.jpg" alt="bowl of ramen">
+                        </div>
+                    </div>
+            <div class="col-md-offset-3 col-md-6 search-box">
                 <form class="form-inline" onkeypress="return event.keyCode !=13;">
                     <div class="form">
-                        <p>Find restaurants with the best ratings and the lowest prices within walking distance of your location.</p><br />
-                        <button class="btn btn-default button" id="useLocation">Use My Location</button>
-                        <label for="inputLocation" id="zip">OR enter your zip code</label>
-                        <input type="number" class="form-control" id="location-input" placeholder="zip code">
-                        <button type="submit" class="btn btn-default button submit">Search</button>
+                            <p>Find restaurants with the best ratings and the lowest prices within walking distance of your location.</p><br />
+                            <button class="btn btn-default button" id="useLocation">Use My Location</button>
+                            <label for="inputLocation" id="zip">OR enter your zip code</label>
+                            <input type="number" class="form-control" id="location-input" placeholder="zip code">
+                            <button type="submit" class="btn btn-default button submit">Search</button>
                     </div>
                 </form>
         </div>
@@ -85,7 +109,7 @@
             </div>
             <div class="col-md-4 saved-places">
                 <h3>My Favorites 
-                    <img class ="burger" src="assets/images/burger.png" alt="burger icon" />
+                    <img class ="burger-icon" src="assets/images/burger.png" alt="burger icon" />
                 </h3>
                     <div class="saved-list hidden">
                     </div>
