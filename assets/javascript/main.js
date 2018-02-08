@@ -119,7 +119,7 @@ function runQuery(latLong) {
                     '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' +
                     `<p class=rating${i}>` + '</p>';
                     
-                var favButton = $('<button><img class="burger" src="assets/images/burger.png" alt="burger icon" /></button>');
+                var favButton = $('<button><img class="burger-icon" src="assets/images/burger.png" alt="burger icon" /></button>');
                 favButton.attr('id', restaurantCounter);
                 favButton.attr('class', 'favBox button');
                 favButton.attr("data-name", yelpObj.businesses[i].name);
@@ -190,44 +190,61 @@ function runQuery(latLong) {
 
         /* Update Map with location after location is entered */
             updateMap();
+            var infowindow = new google.maps.InfoWindow();
+
             for (var i = 0; i < 10; i++) {
-                var infowindow = new google.maps.InfoWindow();
                 var myLatLng = new google.maps.LatLng((yelpObj.businesses[i].coordinates.latitude), (yelpObj.businesses[i].coordinates.longitude));
                 var marker = new google.maps.Marker({
                     position: myLatLng,
                     map: map,
                     animation: google.maps.Animation.DROP,
                 });
-            
-                var link = $(this).attr('data-url');
-                link = '  <a target="_blank" href=' + link + '>' + "Link to Yelp" + '</a>';
+        
+
+                var link = '<a target="_blank" href=' + yelpObj.businesses[i].url + '>' + "Link to Yelp" + '</a>';
                 var content ='<div class="info-window">'
                 + '<h4>' + yelpObj.businesses[i].name + '</h4>'
                 + '<p>' +  yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>'
                 + '<p>' + link + '</p>'
                 + '</div>';
-                console.log("content", content);
 
-                // if (yelpObj.businesses[i].is_closed === false){
-                //     newResult.append('<p class="open">Open Now</p>');
-                //     var open = "Open Now";
-                // }else{
-                //     open = "Closed";
-                // };
+                    var open = false
+                    if (yelpObj.businesses[i].is_closed === false){
+                        open = true 
+                    }
 
-                var infowindow = new google.maps.InfoWindow({});
-                    // google.maps.event.addListener(marker, 'click', function() {
-                    //   info_window.open(map, marker);
-                google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+                    if (open){
+                        content += "<p class='open'>Open Now</p></div>";
+                    }else{
+                        content += "<p class='closed'>Closed</p></div>";
+                    }
+
+
+                google.maps.event.addListener(marker,'click', (function(marker,content){ 
                         return function() {
                         infowindow.setContent(content);
                         console.log(open);
                         infowindow.open(map,marker);
                         };
-                    })(marker,content,infowindow)); 
+                    })(marker,content)); 
 
             }
         
         }
     });
 }
+
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) { 
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    setTimeout(carousel, 1000); 
+};
+
+$('.carousel').carousel();
