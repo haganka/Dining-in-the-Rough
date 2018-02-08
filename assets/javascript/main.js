@@ -127,7 +127,7 @@ function runQuery(latLong) {
                 $('.search-results').append(newResult);
                 var image = yelpObj.businesses[i].image_url;
                 var id = yelpObj.businesses[i].id
-                var imageAppend = '<div class="col-md-4"><img class="imageThumbs" + src=' + image + '></div>' 
+                var imageAppend = '<div class="col-md-4"><img class="img-responsive imageThumbs" + src=' + image + '></div>' 
                 var resultOutput = `<div col-md-8 id=${id} class="result-box"><p class="title">` + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' +
                     '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' +
                     `<p class=rating${i}>` + '</p>';
@@ -253,3 +253,4 @@ function runQuery(latLong) {
      
     });
 }
+
