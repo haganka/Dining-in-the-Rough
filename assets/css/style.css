@@ -93,7 +93,7 @@ a {
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 5px;
-    margin-left: 3px;
+    margin-left: 20px;
     margin-right: 3px;
     z-index: -1;
 }
@@ -181,7 +181,7 @@ a {
 
 
 .delete {
-    display: inline-block;
+    /* display: inline-block; */
     margin-bottom: 0;
     margin-right: 20px;
     font-size: 14px;
@@ -191,8 +191,8 @@ a {
     border-radius: 5px;
     color: rgb(49, 49, 49);
     background-color: #fff;
-    opacity: 0.5;
-    border: 1px solid #596e90;
+    opacity: 0.7;
+    border: 1.2px solid  rgb(49, 49, 49);
     margin-right: 20px;
     border-radius: 5px;
     padding: 1px, 5px;
@@ -209,6 +209,7 @@ a {
     padding-left: 10px;
     padding-top: 10px;
     border-radius: 5px;
+    margin-right: 20px;
 }
 
 .info-window {
@@ -263,7 +264,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .modal-body {
-    /* font-family: 'Roboto', sans-serif; */
     font-family: 'Londrina Solid', cursive;
     color: rgb(242,141,82);
     background-color: rgb(255, 255, 255);
@@ -282,10 +282,13 @@ input[type=number]::-webkit-outer-spin-button {
     height: 350px;
     background-size: contain;
     display: block;
+    position: relative;
 }
 
 .item {
     object-fit: contain;
+    z-index: -1;
+
 }
 
 
@@ -297,4 +300,30 @@ input[type=number]::-webkit-outer-spin-button {
     float: right;
     margin-right: 20px;
 
+}
+
+.credit {
+    vertical-align: center;
+    background-color: rgb(255, 255, 255);
+    opacity: .5;
+    border-radius: 3px;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.cap {
+    color: black;
+    font-size: 10px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 10px;
+    vertical-align: center;
+}
+
+.glyphicon {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 150px;
 }

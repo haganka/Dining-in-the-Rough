@@ -234,17 +234,3 @@ function runQuery(latLong) {
     });
 }
 
-var myIndex = 0;
-carousel();
-
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) { 
-    }
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}    
-    setTimeout(carousel, 1000); 
-};
-
-$('.carousel').carousel();
