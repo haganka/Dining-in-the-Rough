@@ -1,5 +1,14 @@
+body.modal-open .background {
+    -webkit-filter: blur(4px) grayscale(100%);
+    -moz-filter: blur(4px) grayscale(100%);
+    -o-filter: blur(4px) grayscale(100%);
+    -ms-filter: blur(4px) grayscale(100%);
+    filter: blur(4px) grayscale(100%);
+}
+
 .top, .footer {
     background-color:#732929;
+    color: white;
 }
 
 h1 {
@@ -252,6 +261,7 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0; 
 }
 
+
 .modal-content {
    font-family: 'Londrina Solid', cursive;
    align-content: center;
@@ -278,6 +288,43 @@ input[type=number]::-webkit-outer-spin-button {
     color:  rgb(255, 255, 255);
 }
 
+#wait {
+    visibility: hidden;
+    padding: 0px;
+    margin: 0 auto;
+    transition: ease-in ;
+    z-index: 2000;
+}
+
+#wait img {
+    height: 65px;
+    width:  65px;
+}
+.footer {
+    margin-top: 20px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 20px;
+    position: relative;
+}
+
+#footer {
+    position: absolute;
+    text-align: left;
+    vertical-align: middle;
+    bottom: 20px;
+    left: 5px;
+}
+
+#logos {
+    float: right;
+    position: relative; 
+    margin: 0;
+    border: 0;
+    padding: 0;
+    bottom: 10px;
+}
 
 .carousel-inner {
     width: 100%;
