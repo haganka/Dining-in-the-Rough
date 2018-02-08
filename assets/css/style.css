@@ -158,7 +158,9 @@ a {
 .submit:active, .submit:visited, #useLocation:active, #useLocation:visited {
     border: none;
     outline: none;
+    box-shadow: none;
 }
+
 
 .favBox, .favBox:active, .favBox:visited {
     border: none;
