@@ -18,7 +18,13 @@ function initMap() {
         gestureHandling: 'cooperative'
     });
 }
-//Get Location
+/**
+ * This function obtains the user's current location.
+ * @param {success} e built-in function that determine if geolocation is supported in browser
+ * @param {error} e tells the user that their browser is not compatible with geolocation
+ * 
+ * @returns position, a parameter needed for the callback function showPosition to get the user's location
+ */
 function getLocation(e) {
     e.preventDefault();
     
@@ -29,7 +35,12 @@ function getLocation(e) {
     }
 }
 
-//enhance: add error handling for geolocation
+/**
+ * This function gives us the user's current location 
+ * @param {*} position the Geolocation object that captures the user's location 
+ * 
+ * @returns the location of the user's device in "latitude/longitude" format needed to run the Yelp ajax request
+ */
 function showPosition(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
@@ -52,10 +63,12 @@ function updateMap() {
     });
 
     //Turning this off - may use this as a custom marker for user position
+    var icon = "http://maps.google.com/mapfiles/ms/micons/blue-dot.png";
     var marker = new google.maps.Marker({
         position: userLocation,
         map: map,
-        title: 'User'
+        title: 'User',
+        icon: new google.maps.MarkerImage(icon)
     });
 }
 
@@ -94,10 +107,17 @@ var getLatLng = function(event) {
 }
 $('.submit').on('click', getLatLng);
 
-//Put yelp query function here
+/**
+ * This function makes the yelp ajax request and manipulates the DOM to display the search results
+ * @param {*} latLong the user's latitude and longitude combined with a /
+ * 
+ * @returns results in map and list format
+ */
 function runQuery(latLong) {
 
-    //clear out search results 
+    /**
+     * This function empties the search results anytime a new request is performed so that the list only shows 10 results.
+     */
     $('.search-results').empty('');
 
     var queryURL = 'https://cors-anywhere.herokuapp.com/' + 'https://nu-yelp-api.herokuapp.com/api/all/' + latLong + '/1/3219';
@@ -108,7 +128,12 @@ function runQuery(latLong) {
         method: "GET"
     }).then(function(yelpData) {
 
-        //make the yelpData into an object
+        /** 
+        * This function takes the string returned from the ajax request and turns it into a JSON object
+        * @param {*} yelpData is the string returned from the ajax request
+        * 
+        * @returns yelpObj -- the data in a JSON object format
+        */
         var yelpObj = JSON.parse(yelpData);
 
         //error handling - if business array is empty, let's help the user with feedback
@@ -227,9 +252,9 @@ function runQuery(latLong) {
 
                 var infowindow = new google.maps.InfoWindow({});
 
-                    var open = false
+                    var open = false;
                     if (yelpObj.businesses[i].is_closed === false){
-                        open = true 
+                        open = true; 
                     }
 
                     if (open){
