@@ -94,6 +94,12 @@ var getLatLng = function(event) {
 }
 $('.submit').on('click', getLatLng);
 
+$("#location-input").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $(".submit").click();
+    }
+});
+
 //Put yelp query function here
 function runQuery(latLong) {
 
@@ -108,7 +114,6 @@ function runQuery(latLong) {
         method: "GET"
     }).then(function(yelpData) {
 
-        //make the yelpData into an object
         var yelpObj = JSON.parse(yelpData);
 
         //error handling - if business array is empty, let's help the user with feedback
@@ -138,16 +143,19 @@ function runQuery(latLong) {
                 favButton.attr("data-name", yelpObj.businesses[i].name);
                 favButton.attr("data-url", yelpObj.businesses[i].url);
                
-                    var open = false
-                    if (yelpObj.businesses[i].is_closed === false){
-                        open = true 
-                    }
+                    // console.log("open?", yelpObj.businesses[i].open_now);
+                    // var open = false
+                    // if (yelpObj.businesses[i].open_now === true){
+                    //     open = true;
+                    // }
 
-                    if (open){
-                        resultOutput += "<p class='open'>Open Now</p></div>";
-                    }else{
-                        resultOutput += "<p class='closed'>Closed</p></div>";
-                    }
+                    // if (open){
+                    //     resultOutput += "<p class='open'>Open Now</p></div>";
+                    // }else{
+                    //     resultOutput += "<p class='closed'>Closed</p></div>";
+                    // }
+                    // console.log(open, "this is what")
+
                     newResult.html(resultOutput);
 
                 var imageLinks = [
@@ -162,7 +170,7 @@ function runQuery(latLong) {
                     '<img src="assets/images/regular/regular_1.png" alt="1 star">'
                 ];
 
-                var anchorTag = '     <a class= "review" target="_blank" href=' + yelpObj.businesses[i].url + '>' + '    Based on ' + yelpObj.businesses[i].review_count + ' Reviews' + '</a>'
+                var anchorTag = '<a class= "review" target="_blank" href=' + yelpObj.businesses[i].url + '>' + '    Based on ' + yelpObj.businesses[i].review_count + ' Reviews' + '</a>'
                 if (yelpObj.businesses[i].rating === 5) {
                     $('.rating' + i).html(imageLinks[0] + anchorTag);
                 } else if (yelpObj.businesses[i].rating === 4.5) {
@@ -198,7 +206,7 @@ function runQuery(latLong) {
         });
 
 
-        /* Update Map with location after location is entered */
+
             updateMap();
             var infowindow = new google.maps.InfoWindow();
 
@@ -218,27 +226,25 @@ function runQuery(latLong) {
                 + '<p>' + link + '</p>'
                 + '</div>';
 
-                // if (yelpObj.businesses[i].is_closed === false){
-                //     newResult.append('<p class="open">Open Now</p>');
-                //     var open = "Open Now";
-                // }else{
-                //     open = "Closed";
-                // };
-
                 var infowindow = new google.maps.InfoWindow({});
 
-                    var open = false
-                    if (yelpObj.businesses[i].is_closed === false){
-                        open = true 
-                    }
+                    // var open = false
+                    // if (yelpObj.businesses[i].is_closed === false){
+                    //     open = true 
+                    // }
 
-                    if (open){
-                        content += "<p class='open'>Open Now</p></div>";
-                    }else{
-                        content += "<p class='closed'>Closed</p></div>";
-                    }
+                    // if (open){
+                    //     content += "<p class='open'>Open Now</p></div>";
+                    // }else{
+                    //     content += "<p class='closed'>Closed</p></div>";
+                    // }
 
-                
+                /**
+                 * adds info windows to map on marker click
+                 * @param {object} marker - restaurant location pin drops on map
+                 * @param {event} click - listens for click on marker
+                 * @param {callback function} 
+                 */
                 google.maps.event.addListener(marker,'click', (function(marker,content){ 
                         return function() {
                         infowindow.setContent(content);
