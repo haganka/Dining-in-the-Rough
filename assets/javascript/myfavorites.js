@@ -25,7 +25,9 @@ function saveRestaurant(event) {
 
 $(document).on("click", ".favBox", saveRestaurant);
 
-/** Gets restaurant names and links from local storage and appends to My Favorites div*/
+/** 
+ * Gets restaurant names and links from local storage and appends to My Favorites div
+ * */
 function putOnPage() {
     $(".saved-list").empty();
 
@@ -56,6 +58,7 @@ putOnPage();
 /**
  * On click removes corresponding restaurant name and link from My Favorites and local storage 
  * @param {method} event 
+ * @return {function} putOnPage - calls putOnPage to push to favorites
 */
 $(document).on("click", "button.delete", function () {
     var favelist = JSON.parse(localStorage.getItem("savedplaces"));

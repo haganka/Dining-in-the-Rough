@@ -69,11 +69,11 @@ a {
 .search-box {
     background: rgb(255, 255, 255);
     padding: 20px;
-    margin-top: 75px;
+    margin-top: -250px;
     border-radius: 5px;
     opacity: 0.85;
-    position: absolute;
-    top: 5px;
+    position: relative;
+    max-height:
     align-content: center;
 }
 
@@ -83,11 +83,6 @@ a {
 
 #map {
     height: 400px;
-    /* min-height: 400px;
-    min-width: 400px;
-    max-width: 100%;
-    padding: 0;
-    margin: 0 auto; */
 }
 
 
