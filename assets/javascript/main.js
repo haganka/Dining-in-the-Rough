@@ -18,7 +18,13 @@ function initMap() {
         gestureHandling: 'cooperative'
     });
 }
-//Get Location
+/**
+ * This function obtains the user's current location.
+ * @param {event} e built-in function that determine if geolocation is supported in browser
+ * @param {event} e tells the user that their browser is not compatible with geolocation
+ * 
+ * @returns position, a parameter needed for the callback function showPosition to get the user's location
+ */
 function getLocation(e) {
     e.preventDefault();
     
@@ -29,7 +35,12 @@ function getLocation(e) {
     }
 }
 
-//enhance: add error handling for geolocation
+/**
+ * This function gives us the user's current location 
+ * @param {object} position the Geolocation object that captures the user's location 
+ * 
+ * @returns the location of the user's device in "latitude/longitude" format needed to run the Yelp ajax request
+ */
 function showPosition(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
@@ -52,10 +63,12 @@ function updateMap() {
     });
 
     //Turning this off - may use this as a custom marker for user position
+    var icon = "http://maps.google.com/mapfiles/ms/micons/blue-dot.png";
     var marker = new google.maps.Marker({
         position: userLocation,
         map: map,
-        title: 'User'
+        title: 'User',
+        icon: new google.maps.MarkerImage(icon)
     });
 }
 
@@ -94,27 +107,41 @@ var getLatLng = function(event) {
 }
 $('.submit').on('click', getLatLng);
 
+
+
 $("#location-input").keyup(function(event) {
     if (event.keyCode === 13) {
         $(".submit").click();
     }
 });
 
-//Put yelp query function here
+/**
+ * This function makes the yelp ajax request and manipulates the DOM to display the search results
+ * @param {string} latLong the user's latitude and longitude combined with a /
+ * 
+ * @returns results in map and list format
+ */
 function runQuery(latLong) {
 
-    //clear out search results 
+
     $('.search-results').empty('');
 
     var queryURL = 'https://cors-anywhere.herokuapp.com/' + 'https://nu-yelp-api.herokuapp.com/api/all/' + latLong + '/1/3219';
     var restaurantCounter = 0;
-    console.log(queryURL);
+
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(yelpData) {
 
+        /** 
+        * This function takes the string returned from the ajax request and turns it into a JSON object
+        * @param {string} yelpData is the string returned from the ajax request
+        * 
+        * @returns yelpObj -- the data in a JSON object format
+        */
         var yelpObj = JSON.parse(yelpData);
+
 
         //error handling - if business array is empty, let's help the user with feedback
         if  (yelpObj.businesses.length === 0){
@@ -126,37 +153,23 @@ function runQuery(latLong) {
 
             for (var i = 0; i < 10; i++){
                 restaurantCounter++;
-                // var newResult = $('<div>');
-                // newResult.addClass('result row');
-                // newResult.attr('id', 'restaurant-' + restaurantCounter);
-                // $('.search-results').append(newResult);
+                var newResult = $('<div>');
+                newResult.addClass('result row');
+                newResult.attr('id', 'restaurant-' + restaurantCounter);
+                $('.search-results').append(newResult);
                 var image = yelpObj.businesses[i].image_url;
                 var id = yelpObj.businesses[i].id
-                var imageAppend = '<div class="col-md-4"><img class="img-responsive imageThumbs" + src=' + image + '></div>' 
+                var imageAppend = '<div class="col-md-4 hidden-xs"><img class="img-responsive imageThumbs" + src=' + image + '></div>' 
                 var resultOutput = `<div col-md-8 id=${id} class="result-box"><p class="title">` + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' +
                     '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' +
                     `<p class=rating${i}>` + '</p>';
-                $(".search-results").append(resultOutput);
+                newResult.append(resultOutput);
                     
                 var favButton = $('<button><img class="burger-icon" src="assets/images/burger.png" alt="burger icon" /></button>');
                 favButton.attr('id', restaurantCounter);
                 favButton.attr('class', 'favBox button');
                 favButton.attr("data-name", yelpObj.businesses[i].name);
                 favButton.attr("data-url", yelpObj.businesses[i].url);
-               
-                    // console.log("open?", yelpObj.businesses[i].open_now);
-                    // var open = false
-                    // if (yelpObj.businesses[i].open_now === true){
-                    //     open = true;
-                    // }
-
-                    // if (open){
-                    //     resultOutput += "<p class='open'>Open Now</p></div>";
-                    // }else{
-                    //     resultOutput += "<p class='closed'>Closed</p></div>";
-                    // }
-                    // console.log(open, "this is what")
-
                     
 
                 var imageLinks = [
@@ -171,25 +184,36 @@ function runQuery(latLong) {
                     '<img src="assets/images/regular/regular_1.png" alt="1 star">'
                 ];
 
-                var anchorTag = '<a class= "review" target="_blank" href=' + yelpObj.businesses[i].url + '>' + '    Based on ' + yelpObj.businesses[i].review_count + ' Reviews' + '</a>'
-                if (yelpObj.businesses[i].rating === 5) {
-                    $('.rating' + i).html(imageLinks[0] + anchorTag);
-                } else if (yelpObj.businesses[i].rating === 4.5) {
-                    $('.rating' + i).html(imageLinks[1] + anchorTag);
-                } else if (yelpObj.businesses[i].rating === 4) {
-                    $('.rating' + i).html(imageLinks[2] + anchorTag);
-                } else if (yelpObj.businesses[i].rating === 3.5) {
-                    $('.rating' + i).html(imageLinks[3] + anchorTag);
-                } else if (yelpObj.businesses[i].rating === 3) {
-                    $('.rating' + i).html(imageLinks[4] + anchorTag);
-                } else if (yelpObj.businesses[i].rating === 2.5) {
-                    $('.rating' + i).html(imageLinks[5] + anchorTag);
-                } else if (yelpObj.businesses[i].rating === 2) {
-                    $('.rating' + i).html(imageLinks[6] + anchorTag);
-                } else if (yelpObj.businesses[i].rating === 1.5) {
-                    $('.rating' + i).html(imageLinks[7] + anchorTag);
-                } else if (yelpObj.businesses[i].rating === 1) {
-                    $('.rating' + i).html(imageLinks[8] + anchorTag);
+                var anchorTag = '<a class="review" target="_blank" href=' + yelpObj.businesses[i].url + '>' + '    Based on ' + yelpObj.businesses[i].review_count + ' Reviews' + '</a>'
+                
+                switch (yelpObj.businesses[i].rating) {
+                    case 5:
+                        $('.rating' + i).html(imageLinks[0] + anchorTag);
+                        break;
+                    case 4.5:
+                        $('.rating' + i).html(imageLinks[1] + anchorTag);
+                        break;
+                    case 4:
+                        $('.rating' + i).html(imageLinks[2] + anchorTag);
+                        break;
+                    case 3.5:
+                        $('.rating' + i).html(imageLinks[3] + anchorTag);
+                        break;
+                    case 3:
+                        $('.rating' + i).html(imageLinks[4] + anchorTag);
+                        break;
+                    case 2.5:
+                        $('.rating' + i).html(imageLinks[5] + anchorTag);
+                        break;
+                    case 2:
+                        $('.rating' + i).html(imageLinks[6] + anchorTag);
+                        break;
+                    case 1.5: 
+                        $('.rating' + i).html(imageLinks[7] + anchorTag);
+                        break;
+                    case 1:
+                        $('.rating' + i).html(imageLinks[8] + anchorTag);
+                        break;
                 }
          
                 $('#'+ id).append(favButton);
@@ -228,17 +252,6 @@ function runQuery(latLong) {
                 + '</div>';
 
                 var infowindow = new google.maps.InfoWindow({});
-
-                    // var open = false
-                    // if (yelpObj.businesses[i].is_closed === false){
-                    //     open = true 
-                    // }
-
-                    // if (open){
-                    //     content += "<p class='open'>Open Now</p></div>";
-                    // }else{
-                    //     content += "<p class='closed'>Closed</p></div>";
-                    // }
 
                 /**
                  * adds info windows to map on marker click
