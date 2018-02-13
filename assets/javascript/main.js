@@ -20,8 +20,8 @@ function initMap() {
 }
 /**
  * This function obtains the user's current location.
- * @param {success} e built-in function that determine if geolocation is supported in browser
- * @param {error} e tells the user that their browser is not compatible with geolocation
+ * @param {event} e built-in function that determine if geolocation is supported in browser
+ * @param {event} e tells the user that their browser is not compatible with geolocation
  * 
  * @returns position, a parameter needed for the callback function showPosition to get the user's location
  */
@@ -37,7 +37,7 @@ function getLocation(e) {
 
 /**
  * This function gives us the user's current location 
- * @param {*} position the Geolocation object that captures the user's location 
+ * @param {object} position the Geolocation object that captures the user's location 
  * 
  * @returns the location of the user's device in "latitude/longitude" format needed to run the Yelp ajax request
  */
