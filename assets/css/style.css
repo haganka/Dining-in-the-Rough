@@ -9,6 +9,7 @@ body.modal-open .background {
 .top, .footer {
     background-color:#732929;
     color: white;
+
 }
 
 h1 {
@@ -26,6 +27,7 @@ h1 {
 
 
 body {
+    width: 100%;
     font-family: 'Roboto', sans-serif;
     background-color:  rgb(255, 255, 255);
     color: rgb(49, 49, 49);
@@ -66,15 +68,21 @@ a {
     margin-right: auto;
 }
 
-.search-box {
+.form {
     background: rgb(255, 255, 255);
     padding: 20px;
     margin-top: -250px;
     border-radius: 5px;
     opacity: 0.85;
     position: relative;
-    max-height:
     align-content: center;
+    padding-bottom: 10px;
+}
+
+.search-box {
+    float: left;
+
+    
 }
 
 .form-inline {
@@ -91,7 +99,7 @@ a {
     height: 500px;
  }
 
-.result {
+.result-box {
     color: rgb(49, 49, 49);
     border: 1px solid rgb(115, 41, 41);
     padding: 15px;
@@ -100,9 +108,11 @@ a {
     margin-left: 20px;
     margin-right: 3px;
     z-index: -1;
+    overflow: hidden;
+    padding-left: 5px;
 }
 
-.result:hover {
+.result-box:hover {
     box-shadow: 0 0 9px rgb(115, 41, 41);
 
 }
@@ -111,14 +121,14 @@ a {
     text-align: center;
 }
 
-.open {
+/* .open {
     color: rgb(98, 216, 98);
     overflow: hidden;
 }
 
 .closed {
     color: rgb(240, 95, 95);
-}
+} */
 
 
 p, form {
@@ -172,7 +182,7 @@ a {
     background-color: none;
     height: 30px;
     width: auto;
-    margin-top: -10px;
+    margin-top: 10px;
 }
 
 .favBox:hover {
@@ -216,6 +226,7 @@ a {
     padding-top: 10px;
     border-radius: 5px;
     margin-right: 20px;
+    overflow: hidden;
 }
 
 .info-window {
@@ -223,21 +234,26 @@ a {
 }
 
 
-.result-box {
+/* .result-box {
     overflow: hidden;
     padding-left: 5px;
-}
+} */
 
 .imageThumbs {
     width: 130px;
     height: auto;
-    max-height: 175px;
+    max-height: 150px;
     border-radius: 10px;
     margin-right: 10px;
+    float: left;
+    margin-bottom: 30px;
+
+
 }
 
 #favs {
     margin-left: 20px;
+    overflow: hidden;
 }
 
 button:visited, button:active {
@@ -371,3 +387,38 @@ input[type=number]::-webkit-outer-spin-button {
     padding-bottom: 10px;
     width: 150px;
 }
+
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+
+
+
+/* Extra small devices (phones, less than 768px) */
+@media screen and (max-width: 768px) {
+    .search-box {
+        width: 100%;
+        height: 80%;
+    }
+    h1 {
+        font-size: 48px;
+    }
+    #slogan {
+        font-size: 25px;
+    }
+    .img-responsive {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) { ... }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) { ... }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) { ... }
