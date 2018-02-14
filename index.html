@@ -3,7 +3,7 @@
 
 <head>
     <title>Dining in the Rough</title>
-    
+
     <link rel="icon" href="assets/images/burgericon.ico" type="image" sizes="16x16">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,60 +35,76 @@
     <div class="container-fluid parent">
         <div class="row background">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <img class=img-responsive src="assets/images/food_background.jpg" alt="table of food">
-                        </div>
-                        <div class="item">
-                            <img class=img-responsive src="assets/images/pizza.jpg" alt="pizza">
-                                <button type="button" class="btn-default credit hidden-xs hidden-sm">
-                                    <span class="glyphicon glyphicon-camera" aria-hidden="true"><span class="cap">Photo by Igor Ovsyannykov on Unsplash</span></span>
-                                </button>
-                        </div>
-                        <div class="item">
-                            <img class=img-responsive src="assets/images/ramen.jpg" alt="bowl of ramen">
-                                <button type="button" class="btn-default credit hidden-xs hidden-sm">
-                                    <span class="glyphicon glyphicon-camera" aria-hidden="true"><span class="cap">Sharon Chen on Unsplash</span></span>
-                                </button>
-                        </div>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img class=img-responsive src="assets/images/food_background.jpg" alt="table of food">
                     </div>
+                    <div class="item">
+                        <img class=img-responsive src="assets/images/pizza.jpg" alt="pizza">
+                        <button type="button" class="btn-default credit hidden-xs hidden-sm">
+                            <span class="glyphicon glyphicon-camera" aria-hidden="true">
+                                <span class="cap">Photo by Igor Ovsyannykov on Unsplash</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="item">
+                        <img class=img-responsive src="assets/images/ramen.jpg" alt="bowl of ramen">
+                        <button type="button" class="btn-default credit hidden-xs hidden-sm">
+                            <span class="glyphicon glyphicon-camera" aria-hidden="true">
+                                <span class="cap">Sharon Chen on Unsplash</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
             </div>
-                <div class="col-md-offset-3 col-md-6 col-xs-12 search-box">
-                    <form class="form-inline" onkeypress="return event.keyCode !=13;">
-                        <div class="form">
-                                <p>Find restaurants with the best ratings and the lowest prices within walking distance of your location.</p><br />
-                                <button class="btn btn-default button" id="useLocation">Use My Location</button>
-                                <label for="inputLocation" id="zip">OR enter your zip code</label>
-                                <input type="number" class="form-control" id="location-input" placeholder="zip code">
-                                <button type="submit" class="btn btn-default button submit" id="searchBtn">Search</button>
+            <div class="col-md-offset-3 col-md-6 col-xs-12 search-box">
+                <h4>Find restaurants with the best ratings and the lowest prices within walking distance of your location.</h4>
+                <br/>
+
+                <div>
+                    <button class="btn btn-default" id="useLocation">Use My Location</button>
+                </div>
+                <br>
+
+                <div>
+                    <form onkeypress="return event.keyCode !=13;">
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="location-input" placeholder="Or Enter Your Zip Code" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default glyphicon glyphicon-search submit" type="submit" id="searchBtn"></button>
+                            </span>
                         </div>
-                        <div id="wait">
-                            <img src='assets/images/Ellipsis-4.4s-200px.svg'/>
+                        <div class="form-inline" id="wait">
+                            <img src='assets/images/Ellipsis-4.4s-200px.svg' />
                         </div>
                     </form>
+
                 </div>
+
+
+            </div>
         </div>
     </div>
 
-        <div class="row">
-            <div class="col-md-4 results">
-                <h3 id="searchHead">Search Results</h3>
-                <div class="search-results">
-                </div>
-            </div>
-            <div class="col-md-4 map-results">
-                <h3>Map Results</h3>
-                <div id="map">
-                </div>
-            </div>
-            <div class="col-md-4 saved-places">
-                <h3>My Favorites
-                    <img class="burger-icon" src="assets/images/burger.png" alt="burger icon" />
-                </h3>
-                <div class="saved-list hidden">
-                </div>
+    <div class="row">
+        <div class="col-md-4 results">
+            <h3 id="searchHead">Search Results</h3>
+            <div class="search-results">
             </div>
         </div>
+        <div class="col-md-4 map-results">
+            <h3>Map Results</h3>
+            <div id="map">
+            </div>
+        </div>
+        <div class="col-md-4 saved-places">
+            <h3>My Favorites
+                <img class="burger-icon" src="assets/images/burger.png" alt="burger icon" />
+            </h3>
+            <div class="saved-list hidden">
+            </div>
+        </div>
+    </div>
     </div>
 
     <div class="modal fade" id="noLocationModal" tabindex="-1" role="dialog" aria-labelledby="noLocationLabel" aria-hidden="true">
