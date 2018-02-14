@@ -1,3 +1,4 @@
+
 var favorites = JSON.parse(localStorage.getItem("savedplaces"));
 
 if (!Array.isArray(favorites)) {
@@ -32,11 +33,11 @@ function putOnPage() {
     $(".saved-list").empty();
 
     var insideFavorites = JSON.parse(localStorage.getItem("savedplaces"));
+    var empty = true;
     if (!Array.isArray(insideFavorites)) {
         insideFavorites = [];
     }
-
-    var empty = true;
+    
     for (var i = 0; i < insideFavorites.length; i++) {
         var name = $("<p>").append(insideFavorites[i]);
         var remove = $("<button class=delete id=deleteID>").text("x").attr("data-index", i);
@@ -65,6 +66,7 @@ $(document).on("click", "button.delete", function () {
     var currentIndex = $(this).attr("data-index");
 
     favelist.splice(currentIndex, 1);
+    favorites = favelist;
     localStorage.setItem("savedplaces", JSON.stringify(favelist));
 
     putOnPage();

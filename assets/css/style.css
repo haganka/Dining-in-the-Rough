@@ -27,7 +27,7 @@ h1 {
     color: white;
 }
 
-h4 {
+#description {
     text-align: center;
 }
 
@@ -74,15 +74,7 @@ a {
     margin-right: auto;
 }
 
-/* .form {
-    background: rgb(255, 255, 255);
-    padding: 20px;
-    margin-top: -250px;
-    border-radius: 5px;
-    opacity: 0.85;
-    position: relative;
 
-} */
 .parent{
     position: relative;
 }
@@ -170,10 +162,6 @@ a {
     width: 100%;
 }
 
-/* .input-group {
-    width: 100%;
-} */
-
 .btn-default, #location-input {
     border: 1px solid rgb(191, 87, 63);
     opacity: 1;
@@ -211,9 +199,7 @@ a {
     visibility: hidden;
 }
 
-
 .delete {
-    /* display: inline-block; */
     margin-bottom: 0;
     margin-right: 20px;
     font-size: 14px;
@@ -258,7 +244,6 @@ a {
     max-height: 175px;
     border-radius: 10px;
     margin-right: 10px;
-    /* margin-bottom: 30px; */
 
 }
 
@@ -391,7 +376,6 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0 auto;
     transition: ease-in ;
     z-index: 2000;
-    /* align-content: center; */
 
 }
 
