@@ -1,7 +1,6 @@
 var map;
 var latLong = '';
 
-//For progress animation - check if ajax is called and if it has completed
 $(document).ajaxStart(function(){
     $("#wait").css("visibility", "visible");
 });
@@ -9,7 +8,10 @@ $(document).ajaxComplete(function(){
     $("#wait").css("visibility", "hidden");
 });
 
-//This is the initial map view upon loading
+/** 
+* This function initializes map to the latitude and longitude of Chicago, upon starting the application.
+* 
+*/ 
 function initMap() {
     var userLocation = { lat: 41.89633, lng: -87.61871 }; 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -51,7 +53,11 @@ function showPosition(position) {
 }
 $('#useLocation').on('click', getLocation);
 
-// Update Google Map with a view of the location requested by user
+/** 
+ *  This function centers the map to display the location as entered by the user.
+ *  @function updateMap
+ *  @description Update Google map with a view of the location requested by user
+ */
 function updateMap() {
     var mapSplit = latLong.split("/");
     console.log("mapSplit", mapSplit);
@@ -62,7 +68,6 @@ function updateMap() {
         gestureHandling: 'cooperative'
     });
 
-    //Turning this off - may use this as a custom marker for user position
     var icon = "http://maps.google.com/mapfiles/ms/micons/blue-dot.png";
     var marker = new google.maps.Marker({
         position: userLocation,
@@ -71,7 +76,11 @@ function updateMap() {
         icon: new google.maps.MarkerImage(icon)
     });
 }
-
+/**
+ * This function is used to capture the latitude and longitude of the user's position, 
+ * @function getLatLng
+ * @param {Object} - Event 
+ */
 var getLatLng = function(event) {
 
     var APIKey = '&key=AIzaSyCRYYladM1Ui9mjSl2TgmWoTwj_tCO4Lxc';
