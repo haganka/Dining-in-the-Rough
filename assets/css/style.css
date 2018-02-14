@@ -309,6 +309,13 @@ input[type=number]::-webkit-outer-spin-button {
     color:  rgb(255, 255, 255);
 }
 
+.modal-footer button {
+    color: rgb(242,141,82);
+}
+
+.modal-footer button:hover {
+    color: #596e90;
+}
 
 #wait img {
     height: 65px;
@@ -375,6 +382,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .glyphicon {
+    display: inline;
     padding-top: 10px;
     padding-bottom: 10px;
     width: 150px;
