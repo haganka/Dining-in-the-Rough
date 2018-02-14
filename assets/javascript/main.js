@@ -60,7 +60,6 @@ $('#useLocation').on('click', getLocation);
  */
 function updateMap() {
     var mapSplit = latLong.split("/");
-    console.log("mapSplit", mapSplit);
     var userLocation = { lat: parseFloat(mapSplit[0]), lng: parseFloat(mapSplit[1]) };
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
@@ -269,7 +268,6 @@ function runQuery(latLong) {
                 google.maps.event.addListener(marker,'click', (function(marker,content){ 
                         return function() {
                         infowindow.setContent(content);
-                        console.log(open);
                         infowindow.open(map,marker);
                         };
                     })(marker,content)); 
