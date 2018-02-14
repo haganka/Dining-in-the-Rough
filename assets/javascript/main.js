@@ -88,8 +88,6 @@ var getLatLng = function(event) {
         url: queryURL,
         method: 'GET'
     }).then(function(response) {
-        console.log("response", response);
-        console.log(response.status);
 
         if (response.status === "ZERO_RESULTS"){
             $('#badZipModal').modal('show');
@@ -107,6 +105,14 @@ var getLatLng = function(event) {
 }
 $('.submit').on('click', getLatLng);
 
+
+
+$("#location-input").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $(".submit").click();
+    }
+});
+
 /**
  * This function makes the yelp ajax request and manipulates the DOM to display the search results
  * @param {string} latLong the user's latitude and longitude combined with a /
@@ -115,14 +121,12 @@ $('.submit').on('click', getLatLng);
  */
 function runQuery(latLong) {
 
-    /**
-     * This function empties the search results anytime a new request is performed so that the list only shows 10 results.
-     */
+
     $('.search-results').empty('');
 
     var queryURL = 'https://cors-anywhere.herokuapp.com/' + 'https://nu-yelp-api.herokuapp.com/api/all/' + latLong + '/1/3219';
     var restaurantCounter = 0;
-    console.log(queryURL);
+
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -135,7 +139,7 @@ function runQuery(latLong) {
         * @returns yelpObj -- the data in a JSON object format
         */
         var yelpObj = JSON.parse(yelpData);
-        console.log(yelpObj);
+
 
         //error handling - if business array is empty, let's help the user with feedback
         if  (yelpObj.businesses.length === 0){
@@ -157,14 +161,14 @@ function runQuery(latLong) {
                 var resultOutput = `<div col-md-8 id=${id} class="result-box"><p class="title">` + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' +
                     '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' +
                     `<p class=rating${i}>` + '</p>';
+                newResult.html(resultOutput);
                     
                 var favButton = $('<button><img class="burger-icon" src="assets/images/burger.png" alt="burger icon" /></button>');
                 favButton.attr('id', restaurantCounter);
                 favButton.attr('class', 'favBox button');
                 favButton.attr("data-name", yelpObj.businesses[i].name);
                 favButton.attr("data-url", yelpObj.businesses[i].url);
-               
-                newResult.html(resultOutput);
+                    
 
                 var imageLinks = [
                     '<img src="assets/images/regular/regular_5.png" alt="5 stars">',
@@ -225,7 +229,7 @@ function runQuery(latLong) {
         });
 
 
-        /* Update Map with location after location is entered */
+
             updateMap();
             var infowindow = new google.maps.InfoWindow();
 
@@ -245,9 +249,14 @@ function runQuery(latLong) {
                 + '<p>' + link + '</p>'
                 + '</div>';
 
-
                 var infowindow = new google.maps.InfoWindow({});
-                
+
+                /**
+                 * adds info windows to map on marker click
+                 * @param {object} marker - restaurant location pin drops on map
+                 * @param {event} click - listens for click on marker
+                 * @param {callback function} 
+                 */
                 google.maps.event.addListener(marker,'click', (function(marker,content){ 
                         return function() {
                         infowindow.setContent(content);
