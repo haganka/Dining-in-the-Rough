@@ -88,8 +88,6 @@ var getLatLng = function(event) {
         url: queryURL,
         method: 'GET'
     }).then(function(response) {
-        console.log("response", response);
-        console.log(response.status);
 
         if (response.status === "ZERO_RESULTS"){
             $('#badZipModal').modal('show');
@@ -163,7 +161,7 @@ function runQuery(latLong) {
                 var resultOutput = `<div col-md-8 id=${id} class="result-box"><p class="title">` + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' +
                     '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' +
                     `<p class=rating${i}>` + '</p>';
-                newResult.append(resultOutput);
+                newResult.html(resultOutput);
                     
                 var favButton = $('<button><img class="burger-icon" src="assets/images/burger.png" alt="burger icon" /></button>');
                 favButton.attr('id', restaurantCounter);
@@ -219,7 +217,7 @@ function runQuery(latLong) {
                 $('#'+ id).append(favButton);
                 $('#' + id).append('<span id=favs class=hidden >' + "Add to favorites!" + '</span>');
 
-                $('#' + id).prepend(imageAppend);
+                newResult.prepend(imageAppend);
                 
         }
 

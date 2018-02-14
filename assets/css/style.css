@@ -31,16 +31,9 @@ h1 {
     color: white;
     font-size: 32px;
     padding-top: 10px;
-}
-
-
-body {
-    width: 100%;
-    font-family: 'Roboto', sans-serif;
-    background-color:  rgb(255, 255, 255);
-    color: rgb(49, 49, 49);
     margin-bottom: 20px;
 }
+
 
 #zip {
     color: rgb(49, 49, 49);
@@ -397,21 +390,22 @@ input[type=number]::-webkit-outer-spin-button {
         height: 80%;
     }
     h1 {
-        font-size: 48px;
+        font-size: 50px;
+        text-align: center;
     }
     #slogan {
-        font-size: 25px;
+        font-size: 23px;
     }
     .img-responsive {
         width: 100%;
         height: auto;
     }
 }
+@media screen and (max-width: 990px) {
 
-@media screen and (max-width: 1380) and (min-width:990) {
-    .imageThumbs {
-        margin-bottom: 100px;
+    h1 {
+        text-align: center;
     }
-}
 
+}
 
