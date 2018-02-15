@@ -46,4 +46,4 @@ Please see our future ideas. We welcome collaboration and suggestions!
   * Pizza - Igor Ovsyannykov
   * Ramen Bowl - Sharon Chen
   * Donuts - Jessica Henderson
-* Burger icon ![burger](/assets/images/burgericon.ico) from [BomSymbols] (https://www.iconfinder.com/korawan_m)
+* Burger icon <img src="/assets/images/burgericon.png" height="30"> from [BomSymbols](https://www.iconfinder.com/korawan_m)
