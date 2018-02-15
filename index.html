@@ -5,7 +5,6 @@
     <title>Dining in the Rough</title>
 
     <link rel="icon" href="assets/images/burgericon.ico" type="image" sizes="16x16">
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -15,8 +14,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-
-
 </head>
 
 <body>
@@ -78,33 +75,26 @@
                             <img src='assets/images/Ellipsis-4.4s-200px.svg' />
                         </div>
                     </form>
-
                 </div>
+            </div>
+        </div>
 
-
+        <div class="row">
+            <div class="col-md-4 results">
+                <h3 id="searchHead">Search Results</h3>
+                <div class="search-results"></div>
+            </div>
+            <div class="col-md-4 map-results">
+                <h3>Map Results</h3>
+                <div id="map"></div>
+            </div>
+            <div class="col-md-4 saved-places">
+                <h3>My Favorites
+                    <img class="burger-icon" src="assets/images/burger.png" alt="burger icon" />
+                </h3>
+                <div class="saved-list hidden"></div>
             </div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 results">
-            <h3 id="searchHead">Search Results</h3>
-            <div class="search-results">
-            </div>
-        </div>
-        <div class="col-md-4 map-results">
-            <h3>Map Results</h3>
-            <div id="map">
-            </div>
-        </div>
-        <div class="col-md-4 saved-places">
-            <h3>My Favorites
-                <img class="burger-icon" src="assets/images/burger.png" alt="burger icon" />
-            </h3>
-            <div class="saved-list hidden">
-            </div>
-        </div>
-    </div>
     </div>
 
     <div class="modal fade" id="noLocationModal" tabindex="-1" role="dialog" aria-labelledby="noLocationLabel" aria-hidden="true">
@@ -163,18 +153,15 @@
         </div>
     </div>
 
-
     <div class="container-fluid footer">
-        <div class="row footer-div">
-            <div class="col-md-12" id="logos">
-                <a href="https://www.google.com" target="_blank">
-                    <img src="assets/images/powered_by_google_on_non_white_hdpi.png" alt="powered by google">
-                </a>
-                &
-                <a href="https://www.yelp.com" target="_blank">
-                    <img src="assets/images/yelp.png" alt="powered by yelp">
-                </a>
-            </div>
+        <div class="row footer-div" id="logos">
+            <a href="https://www.google.com" target="_blank">
+                <img src="assets/images/powered_by_google_on_non_white_hdpi.png" alt="powered by google">
+            </a>
+             &
+            <a href="https://www.yelp.com" target="_blank">
+                <img src="assets/images/yelp.png" alt="powered by yelp">
+            </a>
         </div>
     </div>
 

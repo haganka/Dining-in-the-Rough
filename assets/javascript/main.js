@@ -67,7 +67,7 @@ function updateMap() {
         gestureHandling: 'cooperative'
     });
 
-    var icon = "http://maps.google.com/mapfiles/ms/micons/blue-dot.png";
+    var icon = "assets/images/bluepin.png"
     var marker = new google.maps.Marker({
         position: userLocation,
         map: map,
@@ -108,7 +108,6 @@ var getLatLng = function(event) {
                 runQuery(latLong);
             }
       });
-      // clears out html at location-input
       $('#location-input').val('');
 }
 $('.submit').on('click', getLatLng);
@@ -148,13 +147,9 @@ function runQuery(latLong) {
         */
         var yelpObj = JSON.parse(yelpData);
 
-
-        //error handling - if business array is empty, let's help the user with feedback
         if  (yelpObj.businesses.length === 0){
-
             $('#noResultModal').modal('show');
         }
-
         else {
 
             for (var i = 0; i < 10; i++){
@@ -165,9 +160,13 @@ function runQuery(latLong) {
                 $('.search-results').append(newResult);
                 var image = yelpObj.businesses[i].image_url;
                 var id = yelpObj.businesses[i].id
-                var imageAppend = '<div class="col-md-4 hidden-xs"><img class="img-responsive imageThumbs" + src=' + image + '></div>' 
-                var resultOutput = `<div col-md-8 id=${id} class="result-box"><p class="title">` + restaurantCounter + '. ' + yelpObj.businesses[i].name + '</p>' +
-                    '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>' +
+                var imageAppend = 
+                    '<div class="col-md-4 hidden-xs"><img class="img-responsive imageThumbs" + src=' + image + '></div>' 
+                var resultOutput = 
+                    `<div col-md-8 id=${id} class="result-box"><p class="title">` + restaurantCounter + '. ' + 
+                    yelpObj.businesses[i].name + '</p>' +
+                    '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + 
+                    yelpObj.businesses[i].location.display_address[1] + '</p>' +
                     `<p class=rating${i}>` + '</p>';
                 newResult.html(resultOutput);
                     
@@ -190,7 +189,8 @@ function runQuery(latLong) {
                     '<img src="assets/images/regular/regular_1.png" alt="1 star">'
                 ];
 
-                var anchorTag = '<a class="review" target="_blank" href=' + yelpObj.businesses[i].url + '>' + '    Based on ' + yelpObj.businesses[i].review_count + ' Reviews' + '</a>'
+                var anchorTag = '<a class="review" target="_blank" href=' + yelpObj.businesses[i].url + '>' + 
+                                '    Based on ' + yelpObj.businesses[i].review_count + ' Reviews' + '</a>'
                 
                 switch (yelpObj.businesses[i].rating) {
                     case 5:
@@ -236,8 +236,6 @@ function runQuery(latLong) {
             $(this).siblings("#favs").toggleClass('hidden');
         });
 
-
-
             updateMap();
             var infowindow = new google.maps.InfoWindow();
 
@@ -249,7 +247,6 @@ function runQuery(latLong) {
                     animation: google.maps.Animation.DROP,
                 });
         
-
                 var link = '<a target="_blank" href=' + yelpObj.businesses[i].url + '>' + "Link to Yelp" + '</a>';
                 var content ='<div class="info-window">'
                 + '<h4>' + yelpObj.businesses[i].name + '</h4>'
