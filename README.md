@@ -43,6 +43,7 @@ Please see our future ideas. We welcome collaboration and suggestions!
 
 ## Acknowledgements
 * Carousel images from [unsplash.com](https://unsplash.com)
-* Pizza - Igor Ovsyannykov
-* Ramen Bowl - Sharon Chen
-* Burger icon ![burger](/assets/images/burger.png) from [BomSymbols] (https://www.iconfinder.com/korawan_m)
+  * Pizza - Igor Ovsyannykov
+  * Ramen Bowl - Sharon Chen
+  * Donuts - Jessica Henderson
+* Burger icon ![burger](/assets/images/burgericon.ico) from [BomSymbols] (https://www.iconfinder.com/korawan_m)
