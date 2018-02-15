@@ -91,9 +91,6 @@ a {
     padding-bottom: 10px;
 }
 
-/* .search-box {
-    float: left;   
-} */
 
 .form-inline {
     text-align: center;
@@ -168,17 +165,24 @@ a {
     z-index: 1;
 }
 
+/* .submit:focus {
+    background-color: rgb(191, 87, 63);
+} */
+
+.submit:active, .submit:visited, .submit:focus, #useLocation:active, #useLocation:focus, #useLocation:visited {
+    border: none;
+    outline: 0;
+    box-shadow: none;
+    color: white;
+    background-color: rgb(191, 87, 63);
+}
+
 .submit:hover, #useLocation:hover {
     background-color: rgb(242, 141, 82);
     border: 1px solid  rgb(242, 141, 82);
     color: white;
 }
 
-.submit:active, .submit:visited, #useLocation:active, #useLocation:visited {
-    border: none;
-    outline: none;
-    box-shadow: none;
-}
 
 
 .favBox, .favBox:active, .favBox:visited {
@@ -252,10 +256,6 @@ a {
     margin-left: 20px;
 }
 
-button:visited, button:active {
-    outline: none;
-    border: none;
-}
 
 .burger-icon {
     height: 30px;
