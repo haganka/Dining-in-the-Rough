@@ -237,7 +237,7 @@ function runQuery(latLong) {
         });
 
             updateMap();
-            var infowindow = new google.maps.InfoWindow();
+
 
             for (var i = 0; i < 10; i++) {
                 var myLatLng = new google.maps.LatLng((yelpObj.businesses[i].coordinates.latitude), (yelpObj.businesses[i].coordinates.longitude));
