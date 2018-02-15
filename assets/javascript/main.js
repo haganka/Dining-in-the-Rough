@@ -35,6 +35,8 @@ function getLocation(e) {
     } else {
         $('.search-box').text("Geolocation is not supported by this browser. Please enter a zip code.");
     }
+
+    $("#searchBtn").addClass("hidden");
 }
 
 /**
