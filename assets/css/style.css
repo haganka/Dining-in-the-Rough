@@ -17,7 +17,6 @@ body.modal-open .background {
 .top, .footer {
     background-color:#732929;
     color: white;
-
 }
 
 h1 {
@@ -74,7 +73,6 @@ a {
     margin-right: auto;
 }
 
-
 .parent{
     position: relative;
 }
@@ -91,7 +89,6 @@ a {
     padding-bottom: 10px;
 }
 
-
 .form-inline {
     text-align: center;
 }
@@ -100,11 +97,10 @@ a {
     height: 400px;
 }
 
-
 .results {
     overflow: scroll;
     height: 500px;
- }
+}
 
  .result {
     color: rgb(49, 49, 49);
@@ -115,7 +111,7 @@ a {
     margin-left: 20px;
     margin-right: 3px;
     z-index: -1;
- }
+}
 
 .result:hover {
     box-shadow: 0 0 9px rgb(115, 41, 41);
@@ -127,7 +123,6 @@ a {
     padding-left: 10px;
     font-size: 14px;
 }
-
 
 p, form {
     font-size: 16px;
@@ -148,7 +143,7 @@ a {
     color: white;
     background-color: rgb(191, 87, 63);
     border: 1px solid rgb(191, 87, 63);
-    line-height: .85; 
+    line-height: 0.9;
 }
 
 #useLocation {
@@ -165,9 +160,13 @@ a {
     z-index: 1;
 }
 
-/* .submit:focus {
-    background-color: rgb(191, 87, 63);
-} */
+.glyphicon {
+    top: 0px;
+    display: inline;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100px;
+}
 
 .submit:active, .submit:visited, .submit:focus, #useLocation:active, #useLocation:focus, #useLocation:visited {
     border: none;
@@ -183,8 +182,6 @@ a {
     color: white;
 }
 
-
-
 .favBox, .favBox:active, .favBox:visited {
     border: none;
     outline: none;
@@ -198,7 +195,6 @@ a {
     transform: scale(1.5);
     background-color: none;
 }
-
 
 .hidden {
     visibility: hidden;
@@ -367,13 +363,6 @@ input[type=number]::-webkit-outer-spin-button {
     vertical-align: center;
 }
 
-.glyphicon {
-    display: inline;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 150px;
-}
-
 .flex-container {
     display: flex;
     flex-wrap: nowrap;
@@ -385,11 +374,7 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0 auto;
     transition: ease-in ;
     z-index: 2000;
-
 }
-
-
-
 
 /* Extra small devices (phones, less than 768px) */
 @media screen and (max-width: 768px) {
