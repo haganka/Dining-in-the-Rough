@@ -20,7 +20,9 @@ Please review our [styleGuide.md](STYLEGUIDE.md) for details on our chosen fonts
 * [jQuery](http://api.jquery.com/)
 
 ## Images
-You can view our initial ![wireframe](assets/images/wireframe.jpg) and ![logic flowchart](assets/images/flowchart.jpg) in our repository.
+You can view our initial wireframe and logic flowchart below.
+![wireframe](assets/images/wireframe.jpg) 
+![logic flowchart](assets/images/flowchart.jpg)
 
 ## Features
 * The app enables you to add and remove your favorite restaurant list that is saved in local storage, so that when closing your browser, you can still access your list.
