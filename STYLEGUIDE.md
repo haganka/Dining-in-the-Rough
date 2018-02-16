@@ -4,14 +4,14 @@
 
 This is a document describes the look/feel of Dining in the Rough. 
 ## Fonts
-‘’’
-[Londrina Solid](https://fonts.google.com/specimen/Londrina+Solid) - H1 tags
-[Oswald](https://fonts.google.com/specimen/Oswald) - H3 tags
-[Roboto](https://fonts.google.com/specimen/Roboto) - P tags, Form, Body
+
+* [Londrina Solid](https://fonts.google.com/specimen/Londrina+Solid) - H1 tags
+* [Oswald](https://fonts.google.com/specimen/Oswald) - H3 tags
+* [Roboto](https://fonts.google.com/specimen/Roboto) - P tags, Form, Body
 
 ## Color Palette
 
-(https://s19.postimg.org/jm0328l5f/palette_with_RGB_descriptions.png)
+![Color Palette](https://s19.postimg.org/jm0328l5f/palette_with_RGB_descriptions.png)
 
 The goal of this color scheme is to evoke a warm , savory aesthetic of comfort food.  The palette is created by someone who’s partial user name is kitsune01mix, on Adobe Cloud. (The entire user name actually doesn’t come up for some reason).
 
