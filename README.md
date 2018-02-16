@@ -11,16 +11,16 @@ To run the code, download the repository zip file. Then run index.html in your b
 Our code uses JSdoc style commenting.
 
 ## Style Guide
-Please review our [styleguide.md](styleguide.md) for details on our chosen fonts and color scheme.
+Please review our [styleGuide.md](STYLEGUIDE.md) for details on our chosen fonts and color scheme.
 
 ## Built With
 * [Bootstrap V3](http://bootstrapdocs.com/v3.0.3/docs/) - CSS framework
 * [Yelp Fusion API](https://www.yelp.com/fusion/) - Yelp FUSION API - used to get restaurant information
 * [Google MAP API](https://developers.google.com/maps/) - Google MAP API - used for displaying user location and restaurant locations
-*[jQuery API](http://api.jquery.com/)
+* [jQuery](http://api.jquery.com/)
 
 ## Images
-You can view our initial [wireframe](assets/images/wireframe.jpg) and [logic flowchart](assets/images/flowchart.jpg) in our repository.
+You can view our initial ![wireframe](assets/images/wireframe.jpg) and ![logic flowchart](assets/images/flowchart.jpg) in our repository.
 
 ## Features
 * The app enables you to add and remove your favorite restaurant list that is saved in local storage, so that when closing your browser, you can still access your list.
@@ -29,9 +29,9 @@ You can view our initial [wireframe](assets/images/wireframe.jpg) and [logic flo
 
 ## Future Ideas
 Future enhancements to the site could include:
-*Showing recommended food items within the restaurant results based on the most mentioned/highly reviewed menu items.
-*Displaying only restaurants that are open at the time of searching to the user.
-*Adding a search query option for specific food items (i.e. searching for "pizza") and rendering restaurants that serve that food.
+* Showing recommended food items within the restaurant results based on the most mentioned/highly reviewed menu items.
+* Displaying only restaurants that are open at the time of searching to the user.
+* Adding a search query option for specific food items (i.e. searching for "pizza") and rendering restaurants that serve that food.
 
 ## Collaboration
 Please see our future ideas. We welcome collaboration and suggestions!
@@ -46,4 +46,4 @@ Please see our future ideas. We welcome collaboration and suggestions!
   * Pizza - Igor Ovsyannykov
   * Ramen Bowl - Sharon Chen
   * Donuts - Jessica Henderson
-* Burger icon <img src="/assets/images/burgericon.png" height="30"> from [BomSymbols](https://www.iconfinder.com/korawan_m)
+* Burger icon from [BomSymbols](https://www.iconfinder.com/korawan_m)
