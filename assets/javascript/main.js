@@ -230,17 +230,17 @@ function runQuery(latLong) {
 
 
             for (var i = 0; i < 10; i++) {
-                var myLatLng = new google.maps.LatLng((yelpObj.businesses[i].coordinates.latitude), (yelpObj.businesses[i].coordinates.longitude));
+                var myLatLng = new google.maps.LatLng((yelpData[i].coordinates.latitude), (yelpData[i].coordinates.longitude));
                 var marker = new google.maps.Marker({
                     position: myLatLng,
                     map: map,
                     animation: google.maps.Animation.DROP,
                 });
         
-                var link = '<a target="_blank" href=' + yelpObj.businesses[i].url + '>' + "Link to Yelp" + '</a>';
+                var link = '<a target="_blank" href=' + yelpData[i].url + '>' + "Link to Yelp" + '</a>';
                 var content ='<div class="info-window">'
-                + '<h4>' + yelpObj.businesses[i].name + '</h4>'
-                + '<p>' +  yelpObj.businesses[i].location.display_address[0] + ', ' + yelpObj.businesses[i].location.display_address[1] + '</p>'
+                + '<h4>' + yelpData[i].name + '</h4>'
+                + '<p>' +  yelpData[i].location.display_address[0] + ', ' + yelpData[i].location.display_address[1] + '</p>'
                 + '<p>' + link + '</p>'
                 + '</div>';
 
