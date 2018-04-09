@@ -104,14 +104,12 @@ var getLatLng = function(event) {
 
            {
                 latLong = response.results[0].geometry.location.lat + '/' + response.results[0].geometry.location.lng;
-         
                 runQuery(latLong);
             }
       });
       $('#location-input').val('');
 }
 $('.submit').on('click', getLatLng);
-
 
 
 $("#location-input").keyup(function(event) {
@@ -128,26 +126,18 @@ $("#location-input").keyup(function(event) {
  */
 function runQuery(latLong) {
 
-
     $('.search-results').empty('');
 
-    var queryURL = 'https://cors-anywhere.herokuapp.com/' + 'https://nu-yelp-api.herokuapp.com/api/all/' + latLong + '/1/3219';
+    var yelpQuery = 'https://cors-anywhere.herokuapp.com/' + 'https://tvgp-yelp-api.herokuapp.com/api/' + latLong;
+
     var restaurantCounter = 0;
 
     $.ajax({
-        url: queryURL,
+        url: yelpQuery,
         method: "GET"
     }).then(function(yelpData) {
 
-        /** 
-        * This function takes the string returned from the ajax request and turns it into a JSON object
-        * @param {string} yelpData is the string returned from the ajax request
-        * 
-        * @returns yelpObj -- the data in a JSON object format
-        */
-        var yelpObj = JSON.parse(yelpData);
-
-        if  (yelpObj.businesses.length === 0){
+        if  (yelpData.length === 0){
             $('#noResultModal').modal('show');
         }
         else {
@@ -158,23 +148,23 @@ function runQuery(latLong) {
                 newResult.addClass('result row');
                 newResult.attr('id', 'restaurant-' + restaurantCounter);
                 $('.search-results').append(newResult);
-                var image = yelpObj.businesses[i].image_url;
-                var id = yelpObj.businesses[i].id
+                var image = yelpData[i].image_url;
+                var id = yelpData[i].id
                 var imageAppend = 
                     '<div class="col-md-4 hidden-xs"><img class="img-responsive imageThumbs" + src=' + image + '></div>' 
                 var resultOutput = 
                     `<div col-md-8 id=${id} class="result-box"><p class="title">` + restaurantCounter + '. ' + 
-                    yelpObj.businesses[i].name + '</p>' +
-                    '<p class="address">' + yelpObj.businesses[i].location.display_address[0] + ', ' + 
-                    yelpObj.businesses[i].location.display_address[1] + '</p>' +
+                    yelpData[i].name + '</p>' +
+                    '<p class="address">' + yelpData[i].location.display_address[0] + ', ' + 
+                    yelpData[i].location.display_address[1] + '</p>' +
                     `<p class=rating${i}>` + '</p>';
                 newResult.html(resultOutput);
                     
                 var favButton = $('<button><img class="burger-icon" src="assets/images/burger.png" alt="burger icon" /></button>');
                 favButton.attr('id', restaurantCounter);
                 favButton.attr('class', 'favBox button');
-                favButton.attr("data-name", yelpObj.businesses[i].name);
-                favButton.attr("data-url", yelpObj.businesses[i].url);
+                favButton.attr("data-name", yelpData[i].name);
+                favButton.attr("data-url", yelpData[i].url);
                     
 
                 var imageLinks = [
@@ -189,10 +179,10 @@ function runQuery(latLong) {
                     '<img src="assets/images/regular/regular_1.png" alt="1 star">'
                 ];
 
-                var anchorTag = '<a class="review" target="_blank" href=' + yelpObj.businesses[i].url + '>' + 
-                                '    Based on ' + yelpObj.businesses[i].review_count + ' Reviews' + '</a>'
+                var anchorTag = '<a class="review" target="_blank" href=' + yelpData[i].url + '>' + 
+                                '    Based on ' + yelpData[i].review_count + ' Reviews' + '</a>'
                 
-                switch (yelpObj.businesses[i].rating) {
+                switch (yelpData[i].rating) {
                     case 5:
                         $('.rating' + i).html(imageLinks[0] + anchorTag);
                         break;
